@@ -36,9 +36,27 @@ const Register = ({ handleRegister, errors, setErrors }) => {
           type='email'
           required
         />
-        
-       
-       
+        <label>First Name</label>
+        <input 
+          name='first'
+          value={user.first}
+          onChange={(e) => setUser({ ...user, first: e.target.value })}
+          required
+        />
+        <label>Last Name</label>
+        <input 
+          name='last'
+          value={user.last}
+          onChange={(e) => setUser({ ...user, last: e.target.value })}
+          required
+        />
+        <label>Profile Image</label>
+        <input 
+          name='image'
+          value={user.image}
+          onChange={(e) => setUser({ ...user, image: e.target.value })}
+          required
+        />
         <label>Password</label>
         <input 
           name='password'
