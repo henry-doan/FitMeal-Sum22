@@ -6,15 +6,20 @@ import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import FetchUser from './components/auth/FetchUser';
 import ProtectedRoute from './components/auth/ProtectedRoute';
+import Workouts from './components/workout/Workouts'
+import WorkoutShow from './components/workout/WorkoutShow';
+import { useState } from 'react';
 
 const App = () => (
+
   <>
     <MainNavbar />
     <FetchUser>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/' element={<ProtectedRoute />}>
-          {/* <Route path='' element={< />} /> */}
+          {<Route path='/workouts' element={<Workouts />} /> }
+          <Route path='/workouts/:id' element={<WorkoutShow />} />
         </Route>
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
