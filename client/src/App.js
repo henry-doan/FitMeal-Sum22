@@ -4,6 +4,7 @@ import Nomatch from './components/shared/Nomatch';
 import MainNavbar from './components/shared/MainNavbar';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
+import Profile from './components/user/Profile';
 import FetchUser from './components/auth/FetchUser';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import Workouts from './components/workout/Workouts'
@@ -18,6 +19,7 @@ const App = () => (
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/' element={<ProtectedRoute />}>
+          <Route path='profile' element={<Profile />} />
           {<Route path='/workouts' element={<Workouts />} /> }
           <Route path='/workouts/:id' element={<WorkoutShow />} />
         </Route>
