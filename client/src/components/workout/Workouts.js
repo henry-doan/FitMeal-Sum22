@@ -23,15 +23,15 @@ const Workouts = ({addWorkout, getAllWorkouts, errors, setErrors, workouts}) => 
       <Modal.Body>
       <WorkoutForm 
       addWorkout={addWorkout}
-      errors={errors} 
-      setErrors={setErrors}  />
+         errors={errors} 
+         setErrors={setErrors}  />
       </Modal.Body>
     </Modal>
       
       <WorkoutList
       workouts={workouts}
-      errors={errors} 
-      setErrors={setErrors}  />
+        errors={errors} 
+        setErrors={setErrors}  />
     </div>
   )
 }
