@@ -24,11 +24,66 @@ const ExerciseProvider = ({ children }) => {
         })
       })
   }
+
+  const addExercise = (workoutId, exercise) => {
+    axios.post(`/api/workouts/${workoutId}/exercises`, { exercise })
+      .then( res => setExercises([...exercises, res.data]))
+      .catch( err => {
+        console.log(err)
+        let field = Object.keys(err.response.data.errors)[0]
+        let errMsg = Object.values(err.response.data.errors)[0]
+        setErrors({
+          variant: 'danger',
+          msg: `${field} ${errMsg}`
+        })
+      })
+  }
+
+  const updateExercise = (workoutId, id, exercise) => {
+    axios.put(`/api/workouts/${workoutId}/exercises/${id}`, { exercise })
+      .then( res => {
+        const newUpdatedExercise = exercise.map( n => {
+          if (n.id === id) {
+            return res.data
+          }
+          return n
+        })
+        setExercises(newUpdatedExercise)
+        navigate(`/${workoutId}/exercises`)
+      })
+      .catch( err => {
+        console.log(err)
+        let field = Object.keys(err.response.data.errors)[0]
+        let errMsg = Object.values(err.response.data.errors)[0]
+        setErrors({
+          variant: 'danger',
+          msg: `${field} ${errMsg}`
+        })
+      })
+  }
+  const deleteExercise = (workoutId, id) => {
+    axios.delete(`/api/workouts/${workoutId}/exercises/${id}`)
+      .then(res => {
+        setExercises(exercises.filter( e => e.id !== id))
+        navigate(`/${workoutId}/exercises`)
+      })
+      .catch( err => {
+        console.log(err)
+        setErrors({
+          variant: 'danger',
+          msg: err.response.statusText
+        })
+      })
+  }
+
   return <ExerciseContext.Provider value={{
     exercises,
     errors, 
     setErrors,
-    getAllExercises
+    getAllExercises,
+    addExercise,
+    updateExercise,
+    deleteExercise
   }}>
   {children}
   </ExerciseContext.Provider>
