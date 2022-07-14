@@ -13,9 +13,9 @@ const Profile = ({ user }) => {
     <Card style={{ width: '30rem' }}>
       <Card.Img variant="top" src={image} />
       <Card.Body>
-      <Card.Title>{first} {last}</Card.Title>
+      <Card.Title> <h3>{first} {last}</h3></Card.Title>
       <Card.Title>{email}</Card.Title>
-      <Button variant="primary">Edit Profile</Button>
+      <Button variant="dark">Edit Profile</Button>
       </Card.Body>
     </Card>
     </Container>
