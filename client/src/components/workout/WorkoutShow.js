@@ -4,8 +4,9 @@ import { useParams, Link } from 'react-router-dom'
 import { Modal, Container, Buttons } from 'react-bootstrap'
 import { WorkoutConsumer } from '../../providers/WorkoutProvider'
 import WorkoutForm from './WorkoutForm';
+import Flash from '../shared/Flash'
 
-const WorkoutShow = ({ updateWorkout, deleteWorkout }) => {
+const WorkoutShow = ({ updateWorkout, deleteWorkout, errors, setErrors }) => {
   const { id } = useParams()
   const [workout, setWorkout] = useState({
     wname: '',
@@ -18,11 +19,23 @@ const WorkoutShow = ({ updateWorkout, deleteWorkout }) => {
     axios
       .get(`/api/workouts/${id}`)
       .then((res) => setWorkout(res.data))
-      .catch((err) => console.log(err))
+      .catch( err => {
+        console.log(err)
+        setErrors({
+          variant: 'danger',
+          msg: err.response.statusText
+        })
+      })
   }, [])
 
   return (
+
     <>
+    {errors ? (
+      <Flash variant={errors.variant} msg={errors.msg} setErrors={setErrors} />
+    ) : null}
+
+
       <Container>
         <div>
           <button className="btn-crud" onClick={() => setEdit(true)}>
@@ -40,11 +53,10 @@ const WorkoutShow = ({ updateWorkout, deleteWorkout }) => {
               />
             </Modal.Body>
           </Modal>
-          <Link to ={`&{id}/exercises`} state={{ wname: wname}}>
+          <button onClick={() => deleteWorkout(id)}>Delete</button>
+          <Link to ={`/&{id}/exercises`}>
             <button>Exercises</button>
           </Link>
-          <button onClick={() => deleteWorkout(id)}>Delete</button>
-          
         </div>
       </Container>
     </>
@@ -55,4 +67,4 @@ const ConnectedWorkoutShow = (props) => (
     {(value) => <WorkoutShow {...props} {...value} />}
   </WorkoutConsumer>
 )
-export default ConnectedWorkoutShow
+export default ConnectedWorkoutShow;
