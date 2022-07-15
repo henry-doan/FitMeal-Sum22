@@ -9,6 +9,7 @@ import FetchUser from './components/auth/FetchUser';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import Workouts from './components/workout/Workouts'
 import WorkoutShow from './components/workout/WorkoutShow';
+import WorkoutForm from './components/workout/WorkoutForm';
 import { useState } from 'react';
 import Exercises from './components/exercises/Exercises'
 
@@ -22,7 +23,11 @@ const App = () => (
         <Route path='/' element={<ProtectedRoute />}>
           <Route path='profile' element={<Profile />} />
           {<Route path='/workouts' element={<Workouts />} /> }
+
+          <Route path='/:id/updateWorkout' element={<WorkoutForm />} />
+          <Route path='/:workoutId/exercises' element={<Exercises />} />
           <Route path='/workouts/:id' element={<WorkoutShow />} />
+          
      { /*<Route path='/:workoutId/exercises' element={<Exercises />} /> */} 
         </Route>
         <Route path='/login' element={<Login />} />

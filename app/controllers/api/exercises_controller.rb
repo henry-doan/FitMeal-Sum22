@@ -38,7 +38,7 @@ private
   end
 
   def set_exercise
-    @exercise = @workout.exercise.find(params[:id])
+    @exercise = @workout.exercises.find(params[:id])
   end
   def exercise_params
      params.require(:exercise).permit(:name, :level, :movetype, :timeframe, :reps, :sets, :image, :desc, :category)

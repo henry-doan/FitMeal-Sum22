@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import axios from 'axios'
+
 import { WorkoutConsumer } from '../../providers/WorkoutProvider'
 import {Modal} from 'react-bootstrap';
 import WorkoutForm from './WorkoutForm';
