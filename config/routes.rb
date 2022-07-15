@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   namespace :api do
-    resources :workouts
     resources :users, only: :update
+    resources :workouts do
+      resources :exercises
+    end
   end
 end

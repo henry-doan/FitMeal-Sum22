@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  level: MyString
+  movetype: MyString
+  timeframe: 2022-07-12 19:18:51
+  reps: 1
+  sets: 1
+  image: MyString
+  desc: MyText
+  category: MyString
+  workout: one
+
+two:
+  name: MyString
+  level: MyString
+  movetype: MyString
+  timeframe: 2022-07-12 19:18:51
+  reps: 1
+  sets: 1
+  image: MyString
+  desc: MyText
+  category: MyString
+  workout: two

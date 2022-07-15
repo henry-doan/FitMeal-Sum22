@@ -10,6 +10,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import Workouts from './components/workout/Workouts'
 import WorkoutShow from './components/workout/WorkoutShow';
 import { useState } from 'react';
+import Exercises from './components/exercises/Exercises'
 
 const App = () => (
 
@@ -22,6 +23,7 @@ const App = () => (
           <Route path='profile' element={<Profile />} />
           {<Route path='/workouts' element={<Workouts />} /> }
           <Route path='/workouts/:id' element={<WorkoutShow />} />
+     { /*<Route path='/:workoutId/exercises' element={<Exercises />} /> */} 
         </Route>
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
