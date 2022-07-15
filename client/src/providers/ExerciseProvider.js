@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-export const ExerciseContext = React.createContext()
+export const ExerciseContext = React.createContext();
 
-export const ExerciseConsumer = ExerciseContext.Consumer
+export const ExerciseConsumer = ExerciseContext.Consumer;
 
 const ExerciseProvider = ({ children }) => {
   const [exercises, setExercises] = useState([])
@@ -13,14 +13,13 @@ const ExerciseProvider = ({ children }) => {
   const navigate = useNavigate()
 
   const getAllExercises = (workoutId) => {
-    axios
-      .get(`/api/workouts/${workoutId}/exercises`)
-      .then((res) => setExercises(res.data))
-      .catch((err) => {
+    axios.get(`/api/workouts/${workoutId}/exercises`)
+      .then( res => setExercises(res.data))
+      .catch( err => {
         console.log(err)
         setErrors({
           variant: 'danger',
-          msg: err.response.statusText,
+          msg: err.response.statusText
         })
       })
   }
@@ -42,13 +41,13 @@ const ExerciseProvider = ({ children }) => {
   const updateExercise = (workoutId, id, exercise) => {
     axios.put(`/api/workouts/${workoutId}/exercises/${id}`, { exercise })
       .then( res => {
-        const newUpdatedExercise = exercise.map( n => {
+        const newUpdatedExercises = exercises.map( n => {
           if (n.id === id) {
             return res.data
           }
           return n
         })
-        setExercises(newUpdatedExercise)
+        setExercises(newUpdatedExercises)
         navigate(`/${workoutId}/exercises`)
       })
       .catch( err => {
@@ -61,10 +60,11 @@ const ExerciseProvider = ({ children }) => {
         })
       })
   }
+
   const deleteExercise = (workoutId, id) => {
     axios.delete(`/api/workouts/${workoutId}/exercises/${id}`)
       .then(res => {
-        setExercises(exercises.filter( e => e.id !== id))
+        setExercises(exercises.filter( n => n.id !== id))
         navigate(`/${workoutId}/exercises`)
       })
       .catch( err => {
@@ -76,17 +76,19 @@ const ExerciseProvider = ({ children }) => {
       })
   }
 
-  return <ExerciseContext.Provider value={{
-    exercises,
-    errors, 
-    setErrors,
-    getAllExercises,
-    addExercise,
-    updateExercise,
-    deleteExercise
-  }}>
-  {children}
-  </ExerciseContext.Provider>
+  return (
+    <ExerciseContext.Provider value={{
+      exercises, 
+      errors, 
+      setErrors,
+      getAllExercises,
+      addExercise,
+      updateExercise,
+      deleteExercise, 
+    }}>
+      { children }
+    </ExerciseContext.Provider>
+  )
 }
 
 export default ExerciseProvider;

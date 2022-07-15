@@ -4,15 +4,16 @@ import Flash from '../shared/Flash';
 import { useParams, useLocation } from 'react-router-dom';
 import { WorkoutConsumer } from '../../providers/WorkoutProvider';
 
-const WorkoutForm = ({ addWorkout, wname, wimage, errors, setErrors, updateWorkout }) => {
+const WorkoutForm = ({ addWorkout, errors, setErrors, updateWorkout }) => {
   const [workout, setWorkout] = useState({ wname: '', wimage: '' })
   
   const { id } = useParams()
   const location = useLocation()
-  // const {  wname, wimage } = location.state
+
 
   useEffect( () => {
     if (id) {
+      const { wname, wimage } = location.state
       setWorkout({ wname, wimage })
     }
   }, [])

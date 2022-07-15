@@ -1,32 +1,34 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useParams, Link } from 'react-router-dom'
-import { Modal, Container, Buttons } from 'react-bootstrap'
+import { Modal, Container, Button, Card } from 'react-bootstrap'
 import { WorkoutConsumer } from '../../providers/WorkoutProvider'
 import WorkoutForm from './WorkoutForm';
 import Flash from '../shared/Flash'
 
-const WorkoutShow = ({ updateWorkout, deleteWorkout, errors, setErrors }) => {
-  const { id } = useParams()
-  const [workout, setWorkout] = useState({
-    wname: '',
-    wimage: '',
-  })
-  const { wname, wimage } = workout
+const WorkoutShow = ({ id, wname, wimage, updateWorkout, deleteWorkout, errors, setErrors }) => {
+  const [show, setShow] = useState(false)
+
+  // const { id } = useParams()
+  // const [workout, setWorkout] = useState({
+  //   wname: '',
+  //   wimage: '',
+  // })
+  // const { wname, wimage } = workout
   const [editing, setEdit]= useState(false)
 
-  useEffect(() => {
-    axios
-      .get(`/api/workouts/${id}`)
-      .then((res) => setWorkout(res.data))
-      .catch( err => {
-        console.log(err)
-        setErrors({
-          variant: 'danger',
-          msg: err.response.statusText
-        })
-      })
-  }, [])
+  // useEffect(() => {
+  //   axios
+  //     .get(`/api/workouts/${id}`)
+  //     .then((res) => setWorkout(res.data))
+  //     .catch( err => {
+  //       console.log(err)
+  //       setErrors({
+  //         variant: 'danger',
+  //         msg: err.response.statusText
+  //       })
+  //     })
+  // }, [])
 
   return (
 
@@ -35,12 +37,17 @@ const WorkoutShow = ({ updateWorkout, deleteWorkout, errors, setErrors }) => {
       <Flash variant={errors.variant} msg={errors.msg} setErrors={setErrors} />
     ) : null}
 
-
       <Container>
+      <Card>
+        <Card.Body>
         <div>
-          <button className="btn-crud" onClick={() => setEdit(true)}>
-            edit
-          </button>
+        <Link to={`/${id}/updateWorkout`} state={{
+                    id, 
+                    wname,
+                    wimage,
+                  }}>
+                  <Button>Update</Button>
+                </Link>
           <Modal show={editing} onHide={() => setEdit(false)}>
             <Modal.Header closeButton></Modal.Header>
             <Modal.Body>
@@ -53,11 +60,14 @@ const WorkoutShow = ({ updateWorkout, deleteWorkout, errors, setErrors }) => {
               />
             </Modal.Body>
           </Modal>
+          
           <button onClick={() => deleteWorkout(id)}>Delete</button>
-          <Link to ={`/&{id}/exercises`}>
+          <Link to ={`/${id}/exercises`}>
             <button>Exercises</button>
           </Link>
         </div>
+        </Card.Body>
+        </Card>
       </Container>
     </>
   )
