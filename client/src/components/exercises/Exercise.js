@@ -8,7 +8,7 @@ import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 
 
-const Exercise = ({ workoutId, id, ename, eimage, category, deleteExercise}) => {
+const Exercise = ({ workoutId, id, ename, image, category, deleteExercise}) => {
   const [show, setShow] = useState(false);
   const [editing, setEdit] = useState(false); 
 
@@ -20,7 +20,7 @@ const Exercise = ({ workoutId, id, ename, eimage, category, deleteExercise}) => 
     <ListGroup.Item as="li" className="d-flex justify-content-between align-items-start">
     <Image width={171}
         height={180}
-        src={eimage} />
+        src={image} />
     {ename}
     
     <Badge bg="secondary" pill>Category: {category}</Badge>
