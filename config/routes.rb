@@ -8,7 +8,10 @@ Rails.application.routes.draw do
   namespace :api do
     resources :users, only: :update
     resources :workouts do
+      resources :userworkouts
       resources :exercises
+    # get '/:id/workouts', to: 'users#workouts'
+    # get '/:id/users', to: 'workouts#users'
     end
   end
 end
