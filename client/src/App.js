@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import Home from './components/shared/home/Home';
 import Nomatch from './components/shared/Nomatch';
 import MainNavbar from './components/shared/MainNavbar';
+import LandingPage from './components/shared/home/LandingPage';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Profile from './components/user/Profile';
@@ -30,6 +31,7 @@ const App = () => (
           
      { /*<Route path='/:workoutId/exercises' element={<Exercises />} /> */} 
         </Route>
+        <Route path='/landingpage' element={<LandingPage />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
         <Route path='/*' element={<Nomatch />} />
