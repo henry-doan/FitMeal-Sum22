@@ -10,6 +10,7 @@ import AuthProvider from "./providers/AuthProvider";
 import WorkoutProvider from "./providers/WorkoutProvider";
 import ExerciseProvider from "./providers/ExerciseProvider";
 import UserWorkoutProvider from "./providers/UserWorkoutProvider";
+import TrainingProvider from './providers/TrainingProvider'
 
 initMiddleware();
 

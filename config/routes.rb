@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   namespace :api do
-    resources :users, only: :update do
+    
+    resources :users, only: :update
+    resources :workouts do
       resources :userworkouts
     end
     resources :workouts do
@@ -15,6 +17,8 @@ Rails.application.routes.draw do
     # get '/:id/users', to: 'workouts#users'
     end
     get '/userWorkouts', to: 'users#allUserWorkouts'
-    get '/workout_all', to: 'workouts#workout_all'
+    resources :userworkouts, except: [:index, :show, :create, :update, :destroy] do
+      resources :trainings
+    end
   end
 end

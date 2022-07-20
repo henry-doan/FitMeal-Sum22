@@ -10,4 +10,5 @@ class User < ActiveRecord::Base
 
   has_many :userworkouts, dependent: :destroy
   has_many :workouts, through: :userworkouts
+  has_many :trainings, dependent: :destroy
 end
