@@ -1,7 +1,6 @@
-import { Container, Row, Col, Card, Button } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Row } from 'react-bootstrap'
 import Flash from '../shared/Flash';
-import WorkoutShow from './WorkoutShow';
+import Workout from './Workout';
 
 const WorkoutList = ({ workouts, errors, setErrors }) => (
   <>
@@ -9,31 +8,15 @@ const WorkoutList = ({ workouts, errors, setErrors }) => (
       <Flash variant={errors.variant} msg={errors.msg} setErrors={setErrors} />
     ) : null}
 
-    <Container>
-      <h1> workouts</h1>
-    </Container>
+  <h1>Workout List </h1>
+    
+  <Row sm={4}>
+  { workouts.map( c => 
+    <Workout key={c.id} {...c} />
+    )}
 
-    <Container>
-      <Row lg={4}>
-        {workouts.map((w) => (
-          <Col>
-            <Card style={{ width: '14rem' }}>
-              <Card.Body>
-                <Card.Img variant="top" src={w.wimage} />
-                <Card.Title className="mt-4"> {w.wname} Workout</Card.Title>
-                <Card.Link>
-                  <WorkoutShow key={w.id} {...w}/>
-                  <Link to={`/workouts/${w.id}`}>
-                    <Button variant="dark">Show</Button>
-                  </Link>
-                </Card.Link>
-              </Card.Body>
-            </Card>
-          </Col>
-        ))}
-      </Row>
-    </Container>
+  </Row>
   </>
 )
 
-export default WorkoutList
+export default WorkoutList;

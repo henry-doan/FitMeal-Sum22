@@ -48,7 +48,7 @@ const ExerciseProvider = ({ children }) => {
           return n
         })
         setExercises(newUpdatedExercises)
-        navigate(`/${workoutId}/exercises`)
+        navigate(`/workouts`)
       })
       .catch( err => {
         console.log(err)
