@@ -3,22 +3,22 @@ class Api::WorkoutsController < ApplicationController
   before_action :set_workout, only: [:show, :update, :destroy]
   
   def index
-    render json: current_user.workouts
+    render json: Workout.all 
   end
-
+ 
   def show
     render json: @workout
   end
-
+ 
   def create
-    @workout = current_user.workouts.new(workout_params)
-    if @workout.save
+    @workout =  Workout.new(workout_params)
+    if @workout.save 
       render json: @workout
     else
       render json: { errors: @workout.errors }, status: :unprocessable_entity
     end
   end
-
+ 
   def update
     if @workout.update(workout_params)
       render json: @workout
@@ -26,18 +26,21 @@ class Api::WorkoutsController < ApplicationController
       render json: { errors: @workout.errors }, status: :unprocessable_entity
     end
   end
-
+ 
   def destroy
     @workout.destroy
-    render json: { message: 'Workout deleted'}
+    render json: { message: ' Workout removed' }
   end
-  
+ 
   private
-    def workout_params 
-      params.require(:workout).permit(:wname, :wimage)
-    end
-
-    def set_workout
-      @workout = current_user.workouts.find(params[:id])
-    end
-end
+  def workout_params
+    params.require(:workout).permit(:wname, :wimage)
+  end
+ 
+  def set_workout
+    @workout =  Workout.find(params[:id])
+  end
+ 
+ 
+ end
+ 
