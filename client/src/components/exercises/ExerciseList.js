@@ -1,12 +1,16 @@
 import { ExerciseConsumer } from "../../providers/ExerciseProvider";
+import { WorkoutConsumer } from "../../providers/WorkoutProvider";
 import Exercise from './Exercise';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
-import { Col, Container, ListGroup, Row } from 'react-bootstrap';
+import { Col, Container, ListGroup, Row, Card } from 'react-bootstrap';
 import Flash from "../shared/Flash";
+import {useState} from 'react';
 
-const ExerciseList = ({ exercises, getAllExercises, deleteExercise, errors, setErrors }) => {
-  const { workoutId } = useParams()
+import axios from 'axios';
+
+const ExerciseList = ({ workouts, getAllWorkouts, exercises, getAllExercises, deleteExercise, errors, setErrors }) => {
+  const {workoutId} = useParams()
 
   useEffect( () => {
     getAllExercises(workoutId)
@@ -22,26 +26,29 @@ const ExerciseList = ({ exercises, getAllExercises, deleteExercise, errors, setE
         />
         : null
       }
-      <h1>All of -blanks- ID:{workoutId} Exercises</h1>
+
      <Container fluid>
       <Row>
         <Col>
 
-        { exercises.map(n => 
+        { exercises.map((n) => ( 
             <Exercise 
               key={n.id}
               {...n}
               workoutId={workoutId}
               deleteExercise={deleteExercise}
             />
-        )}
+            
+        ))}
        
-      </Col>
+        </Col>
       </Row>
       </Container>
     </>
   )
 }
+
+
 
 const ConnectedExerciseList = (props) => (
   <ExerciseConsumer>
@@ -49,4 +56,10 @@ const ConnectedExerciseList = (props) => (
   </ExerciseConsumer>
 )
 
-export default ConnectedExerciseList;
+const ConnectedWorkoutList = (props) => (
+  <WorkoutConsumer>
+    { value => <ConnectedExerciseList {...props} {...value} />}
+  </WorkoutConsumer>
+)
+
+export default ConnectedWorkoutList;

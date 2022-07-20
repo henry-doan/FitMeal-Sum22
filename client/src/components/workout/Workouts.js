@@ -1,11 +1,10 @@
 import React, {useState, useEffect} from 'react'
-
 import { WorkoutConsumer } from '../../providers/WorkoutProvider'
-import {Modal} from 'react-bootstrap';
+import {Button, Modal} from 'react-bootstrap';
 import WorkoutForm from './WorkoutForm';
 import WorkoutList from './WorkoutList';
 
-const Workouts = ({addWorkout, getAllWorkouts, errors, setErrors, workouts}) => {
+const Workouts = ({ addWorkout, getAllWorkouts, errors, setErrors, workouts}) => {
 
   const [adding, setAdd] = useState(false)
 
@@ -15,7 +14,9 @@ const Workouts = ({addWorkout, getAllWorkouts, errors, setErrors, workouts}) => 
   }, [])
   return (
     <div>
-    <button onClick={() => setAdd(true)} >+</button>
+      
+    <h1>WORKOUTS</h1>
+    <Button onClick={() => setAdd(true)} > Create Workout +</Button>
 
     <Modal show={adding} onHide={() => setAdd(false)}>
       <Modal.Header closeButton>

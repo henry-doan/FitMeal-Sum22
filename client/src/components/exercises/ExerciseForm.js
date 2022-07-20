@@ -1,27 +1,30 @@
 import { ExerciseConsumer } from "../../providers/ExerciseProvider";
-import { useParams } from "react-router-dom";
+import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Form, Button } from "react-bootstrap";
 import Flash from '../shared/Flash';
 
-const ExerciseForm = ({ addExercise, setAdd, id, name, level, movetype, reps, timeframe, sets, image, desc,  category, setEdit, updateExercise, errors, setErrors }) => {
-  const { workoutId } = useParams()
+const ExerciseForm = ({ workoutId, addExercise, setAdd, name, level, movetype, reps, timeframe, sets, image, desc,  category, setEdit, updateExercise, errors, setErrors }) => {
+ 
   const [exercise, setExercise] = useState({ name: '', image: '', category: '' })
 
+  const {exerciseId} = useParams()
+
+  
+
   useEffect( () => {
-    if (id) {
+    if (exerciseId) {
+    
       setExercise({ name, image, category })
     }
   }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (id) {
-      updateExercise(workoutId, id, exercise)
-      setEdit(false)
+    if (exerciseId) {
+      updateExercise(workoutId, exerciseId, exercise)
     } else {
       addExercise(workoutId, exercise)
-      setAdd(false)
     }
     setExercise({ name: '', image: '', category: '' })
   }
@@ -36,7 +39,7 @@ const ExerciseForm = ({ addExercise, setAdd, id, name, level, movetype, reps, ti
         />
         : null
       }
-      <h1>{ id ? "Update" : "Create" } Exercise</h1>
+      <h1>{ exerciseId ? "Update" : "Create" } Exercise</h1>
       <Form onSubmit={handleSubmit}>
        
       <Form.Group className="mb-3">

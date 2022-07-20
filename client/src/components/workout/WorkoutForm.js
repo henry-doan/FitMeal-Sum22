@@ -7,12 +7,18 @@ import { WorkoutConsumer } from '../../providers/WorkoutProvider';
 const WorkoutForm = ({ addWorkout, errors, setErrors, updateWorkout }) => {
   const [workout, setWorkout] = useState({ wname: '', wimage: '' })
   
-  const { id } = useParams()
+
+  const {workoutId} = useParams()
+ 
   const location = useLocation()
+
+  // console.log(workoutId)
+
+
 
 
   useEffect( () => {
-    if (id) {
+    if (workoutId) {
       const { wname, wimage } = location.state
       setWorkout({ wname, wimage })
     }
@@ -20,8 +26,8 @@ const WorkoutForm = ({ addWorkout, errors, setErrors, updateWorkout }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (id) {
-      updateWorkout(id, workout)
+    if (workoutId) {
+      updateWorkout(workoutId, workout)
     } else {
       addWorkout(workout)
     }
@@ -41,7 +47,7 @@ const WorkoutForm = ({ addWorkout, errors, setErrors, updateWorkout }) => {
       }
 
       <h1 className='text-center'>
-        { id ? 'Update' : 'Create'} workout
+        { workoutId ? 'Update' : 'Create'} workout
       </h1>
 
 
