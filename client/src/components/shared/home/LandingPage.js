@@ -8,6 +8,7 @@ const LandingPage = () => (
   Return Home
 
 </Link>
+<link rel="stylesheet" href="style.css"></link>
 <div class="header">
       <div class="container">
         
