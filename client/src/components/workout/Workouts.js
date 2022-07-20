@@ -12,6 +12,7 @@ const Workouts = ({ addWorkout, getAllWorkouts, errors, setErrors, workouts}) =>
   useEffect( () =>{
     getAllWorkouts()  
   }, [])
+  
   return (
     <div>
       

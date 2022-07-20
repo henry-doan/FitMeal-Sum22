@@ -46,8 +46,8 @@ const MainNavbar = ({ user, handleLogout }) => {
           <Link to='/workouts'>
             <li>Workouts</li>
           </Link>
-          <Link to='/landingpage'>
-            <li>About</li>
+          <Link to='/trainings'>
+            <li>Trainig</li>
           </Link>
           { rightNavItems() }
         </ul>

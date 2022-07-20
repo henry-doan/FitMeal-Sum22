@@ -9,6 +9,7 @@ import { initMiddleware } from 'devise-axios'
 import AuthProvider from './providers/AuthProvider'
 import WorkoutProvider from './providers/WorkoutProvider'
 import ExerciseProvider from './providers/ExerciseProvider'
+import TrainingProvider from './providers/TrainingProvider'
 
 initMiddleware()
 
