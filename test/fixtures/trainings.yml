@@ -3,9 +3,9 @@
 one:
   tname: MyString
   duration: 1
-  user: one
+  userworkout: one
 
 two:
   tname: MyString
   duration: 1
-  user: two
+  userworkout: two

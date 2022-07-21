@@ -1,9 +1,10 @@
 class Api::TrainingsController < ApplicationController
 
+  before_action :set_userworkout
   before_action :set_training, only: [:show, :update, :destroy]
 
   def index
-    render json: current_user.trainings    
+  render json: @training.userworkouts
   end
 
   def show
@@ -11,10 +12,10 @@ class Api::TrainingsController < ApplicationController
   end
 
   def create
-    @training = current_user.trainings.new(training_params)
-    if @training.save
+    @training = @userworkout.trainings.new(training_params)
+    if @training.save 
       render json: @training 
-    else  
+    else
       render json: { errors: @training.errors }, status: :unprocessable_entity
     end
   end
@@ -22,22 +23,24 @@ class Api::TrainingsController < ApplicationController
   def update
     if @training.update(training_params)
       render json: @training 
-    else  
+    else
       render json: { errors: @training.errors }, status: :unprocessable_entity
     end
   end
 
   def destroy
     @training.destroy
-    render json: { message: 'training removed' }
+    render json: { message: "training Deleted" }
   end
 
   private 
-    def training_params 
-      params.require(:training).permit(:tname, :duration)
+    def set_userworkout
+      @userworkout = Userworkout.find(params[:userworkout_id])
     end
-
     def set_training
-      @training = current_user.trainings.find(params[:id])
+      @training = @userworkout.trainings.find(params[:id])
+    end
+    def training_params
+      params.require(:training).permit(:tname, :duration)
     end
 end

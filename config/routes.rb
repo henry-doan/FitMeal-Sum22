@@ -14,6 +14,10 @@ Rails.application.routes.draw do
     # get '/:id/workouts', to: 'users#workouts'
     # get '/:id/users', to: 'workouts#users'
     end
-    resources :trainings
+
+    resources :userworkouts, except: [:index, :show, :create, :update, :destroy] do
+      resources :trainings
+    end
+    
   end
 end
