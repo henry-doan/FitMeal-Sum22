@@ -32,7 +32,7 @@ const UserWorkoutProvider = ({ children }) => {
       })
       .then((res) => {
         const newUpdateUserWorkout = userWorkouts.map((u) => {
-          if (useEffect.id === id) {
+          if (u.id === id) {
             return res.data;
           }
           return u;
