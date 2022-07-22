@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom'
-import { AuthConsumer } from '../../providers/AuthProvider'
-import { Button, Container, Nav, Navbar, NavDropdown } from 'react-bootstrap'
+import { Link } from 'react-router-dom';
+import { AuthConsumer } from '../../providers/AuthProvider';
+import { Button, Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 
 const MainNavbar = ({ user, handleLogout }) => {
   const rightNavItems = () => {
