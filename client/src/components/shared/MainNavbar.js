@@ -8,13 +8,6 @@ const MainNavbar = ({ user, handleLogout }) => {
     if (user) {
       return (
         <div>
-          {/* <Link to='/profile'>
-            <li>Profile</li>
-          </Link>
-          <li onClick={() => handleLogout() }>
-            Logout
-          </li> */}
-
           <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>
               <Navbar.Brand>
