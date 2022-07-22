@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import { AuthConsumer } from '../../providers/AuthProvider';
+import { Container, Navbar, Button, Nav} from 'react-bootstrap';
+
 
 const MainNavbar = ({ user, handleLogout }) => {
 
@@ -8,27 +10,33 @@ const MainNavbar = ({ user, handleLogout }) => {
     if (user) {
       return (
         <>
-          <Link to='/profile'>
-            <li>Profile</li>
-          </Link>
-          <li onClick={() => handleLogout() }>
+          <Nav.Link>
+            <Link to='/workouts'>Workouts</Link>
+          </Nav.Link>
+          <Nav.Link>
+            <Link to='/profile'>Profile</Link>
+          </Nav.Link>
+          <Nav.Link onClick={() => handleLogout() }>
             Logout
-          </li>
+          </Nav.Link>
         </>
       )
     } else {
       // links to show up when they are not logged in
       return (
         <>
-          <Link to='/login'>
-            <li>
-              Login
-            </li>
-          </Link>
+          <Nav.Link>
+            <Link to='/team'>Team</Link>
+          </Nav.Link>
           <Link to='/register'>
-            <li>
-              Register
-            </li>
+            <Button variant='outline-primary'>
+              Sign Up
+            </Button>
+          </Link>
+          <Link to='/login'>
+            <Button>
+              Log In
+            </Button>
           </Link>
         </>
       )
@@ -37,21 +45,20 @@ const MainNavbar = ({ user, handleLogout }) => {
 
   return (
     <>
-      <nav>
-        <ul>
-          {/* this will display regardless if you are logged in or not */}
-          <Link to='/'>
-            <li>Home</li>
-          </Link>
-          <Link to='/workouts'>
-            <li>Workouts</li>
-          </Link>
-          <Link to='/landingpage'>
-            <li>About</li>
-          </Link>
-          { rightNavItems() }
-        </ul>
-      </nav>
+      {/* this will display regardless if you are logged in or not */}
+      <Navbar>
+        <Container>
+          <Navbar.Brand>
+            <Link to='/'>
+              <p>FitMeal</p>
+            </Link>
+          </Navbar.Brand>
+          <Navbar.Toggle />
+          <Navbar.Collapse className="justify-content-end">
+            { rightNavItems() }
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
     </>
   )
 }

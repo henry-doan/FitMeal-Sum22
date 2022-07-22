@@ -1,60 +1,25 @@
-import { Link } from 'react-router-dom';
+import Login from '../../auth/Login';
+import { Row, Col, Image, Container} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
+
 
 const LandingPage = () => (
 <>
-
-
-<Link to='/'>
-  Return Home
-
-</Link>
-<div class="header">
-      <div class="container">
-        
-      </div>
-    </div>
-
-    <div class="jumbotron">
-      <div class="container">  
-        <div class="main">
-          <h1>FitMeal App Sum22</h1>
-          
-
-        </div>
-      </div>
-    </div>
-
-    <div class="supporting">
-      <div class="container">
-        <div class="col">
-          <img src="https://unsplash.com/photos/0zkJ1EsH9dY"/>
-          <h2>Exercises</h2>
-          <p>Find popular exercises.</p>
-          <a class="btn-default" href="#">Learn more</a>
-        </div>
-        <div class="col">
-          <img src="https://unsplash.com/photos/0zkJ1EsH9dY"/>
-          <h2>Workouts</h2>
-          <p>Log workouts!</p>
-          <a class="btn-default" href="#">Learn more</a>
-        </div>
-        <div class="col">
-          <img src="https://unsplash.com/photos/0zkJ1EsH9dY"/>
-          <h2>Timer</h2>
-          <p>Use modern tools to get into shape.</p>
-          <a class="btn-default" href="#">Learn more</a>
-        </div>
-      </div>
-      <div class="clearfix"></div>
-    </div>
-
-    <div class="footer">
-      <div class="container">
-        <p>&copy; DevPoint Labs Part-time Sum 22 Cohort</p>
-      </div>
-    </div>
+  <Row>
+    <Col md={6}>
+      <Container>
+        <Login />
+        <p>Don't Have an Account? <Link to='/register'>Sign Up</Link></p>
+        <footer>
+          <h6>© 2022 DevPoint Labs Part-Time Summer Cohort</h6>
+        </footer>
+      </Container>
+    </Col>
+    <Col md={6}>
+      <Image src="https://images.unsplash.com/photo-1603077492340-e6e62b2a688b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" />
+    </Col>
+  </Row>
 </>
-
 )
 
 export default LandingPage;
