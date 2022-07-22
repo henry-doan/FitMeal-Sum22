@@ -1,61 +1,20 @@
-import { Link } from 'react-router-dom';
-import { Container, Row, Card, Col, Image, Footer} from 'react-bootstrap';
+import Login from '../../auth/Login';
+import { Row, Col, Image} from 'react-bootstrap';
 
 const LandingPage = () => (
- <>
-
-<Header>
-<Link to='/'>
-  Return Home
-</Link>
-</Header>
-
-      <Container>
-
-      <h1>FitMeal App Sum22</h1>
-    
-      <img class="background-image: url('https://unsplash.com/photos/0zkJ1EsH9dY')" />
-
-      <Row>
-  <Col>
-  <Card style={{ width: '18rem'}}>
-  <Card.Img variant="top" src="holder.js/100px180" />
-  <Card.body>
-    <Card.Title>Exercises</Card.Title>
-    <p>Find Popular Workouts</p>
-  </Card.body>
-</Card>
-</Col>   
-          
-
-  <Col>
-  <Card style={{ width: '18rem'}}>
-  <Card.Img variant="top" src="holder.js/100px180" />
-  <Card.body>
-    <Card.Title>Workouts</Card.Title>
-    <p>Log Your Workouts!</p>
-  </Card.body>
-</Card>
-</Col>
-      
-
-  <Col>
-  <Card style={{ width: '18rem'}}>
-  <Card.Img variant="top" src="holder.js/100px180" />
-  <Card.body>
-    <Card.Title>Timer</Card.Title>
-    <p>Use Modern Tools to Get Into Shape!</p>
-  </Card.body>
-</Card>
-</Col>
-    </Row>
-</Container>
-
-<Footer>
-  <h3>DevPoint Labs Part-Time Summer 2022 Cohort</h3>
-</Footer>
+<>
+  <Row>
+    <Col md={6}>
+      <Login />
+      <footer>
+        <h6>© 2022 DevPoint Labs Part-Time Summer Cohort</h6>
+      </footer>
+    </Col>
+    <Col md={6}>
+      <Image src="https://images.unsplash.com/photo-1603077492340-e6e62b2a688b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80" />
+    </Col>
+  </Row>
 </>
-
 )
 
 export default LandingPage;

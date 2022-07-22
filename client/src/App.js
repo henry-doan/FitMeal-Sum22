@@ -20,7 +20,7 @@ const App = () => (
     <MainNavbar />
     <FetchUser>
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<LandingPage />} />
         <Route path='/' element={<ProtectedRoute />}>
           <Route path='profile' element={<Profile />} />
           <Route path='/workouts' element={<Workouts />} /> 
@@ -32,8 +32,7 @@ const App = () => (
           
      
         </Route>
-        <Route path='/landingpage' element={<LandingPage />} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/login' element={<LandingPage />} />
         <Route path='/register' element={<Register />} />
         <Route path='/*' element={<Nomatch />} />
       </Routes>
