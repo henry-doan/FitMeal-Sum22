@@ -101,16 +101,19 @@ const MainNavbar = ({ user, handleLogout }) => {
               <Navbar.Collapse id="responsive-navbar-nav">
                 <Nav className="me-auto"></Nav>
                 <Nav>
+
+                <Nav.Link>
+                    <Link to="/register">
+                    <Button style={{background: '#265E55'}}> Sign Up</Button>
+                    </Link>
+                  </Nav.Link>
+                  
                   <Nav.Link >
                     <Link to="/login">
                       <Button> Login</Button>
                     </Link>
                   </Nav.Link>
-                  <Nav.Link>
-                    <Link to="/register">
-                    <Button style={{background: '#265E55'}}> Register</Button>
-                    </Link>
-                  </Nav.Link>
+                  
                 </Nav>
               </Navbar.Collapse>
             </Container>

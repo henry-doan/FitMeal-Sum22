@@ -13,13 +13,29 @@ const TrainingProvider = (children) => {
   const navigate = useNavigate()
   const getAllTrainings = () => {
     axios
-      .get('/api/trainings')
+      .get('/api/userworkouts/:userworkout_id/trainings')
       .then((res) => setTrainings(res.data))
       .catch((err) => {
         console.log(err)
         setErrors(err)
       })
   }
+
+  const addTraining = (userWorkoutId, training) => {
+    axios.post(`/api/userworkouts/${userWorkoutId}/trainings`, { training })
+      .then( res => setTrainings([...trainings, res.data]))
+      .catch( err => {
+        console.log(err)
+        let field = Object.keys(err.response.data.errors)[0]
+        let errMsg = Object.values(err.response.data.errors)[0]
+        setErrors({
+          variant: 'danger',
+          msg: `${field} ${errMsg}`
+        })
+      })
+  }
+
+
   return (
     <TrainingContext.Provider
       value={{
