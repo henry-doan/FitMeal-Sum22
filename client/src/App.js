@@ -18,7 +18,7 @@ import { Container } from 'react-bootstrap'
 
 const App = () => (
   <>
-      <MainNavbar />
+    <MainNavbar />
     <Container>
       <FetchUser>
         <Routes>
@@ -29,6 +29,7 @@ const App = () => (
             <Route path="/trainings" element={<Trainings />} />
             <Route path="/:id/updateWorkout" element={<WorkoutForm />} />
             <Route path="/:workoutId/exercises" element={<Exercises />} />
+            <Route path='/workouts/:workoutId' element={<WorkoutShow />} />
             <Route
               path="/:exerciseId/exerciseShow"
               element={<ExerciseShow />}
