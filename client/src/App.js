@@ -13,6 +13,7 @@ import WorkoutShow from './components/workout/WorkoutShow';
 
 import Exercises from './components/exercises/Exercises';
 import ExerciseShow from './components/exercises/ExerciseShow';
+import Team from './components/shared/Team';
 
 const App = () => (
 
@@ -34,6 +35,7 @@ const App = () => (
         </Route>
         <Route path='/login' element={<LandingPage />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/team' element={<Team />} />
         <Route path='/*' element={<Nomatch />} />
       </Routes>
     </FetchUser>
