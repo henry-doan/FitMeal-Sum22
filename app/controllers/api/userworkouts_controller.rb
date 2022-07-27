@@ -1,4 +1,4 @@
-class UserworkoutsController < ApplicationController
+class Api::UserworkoutsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_workout
   before_action :set_userworkout, only: [:show, :update, :destroy]

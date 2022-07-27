@@ -10,8 +10,9 @@ Rails.application.routes.draw do
     resources :workouts do
       resources :userworkouts
       resources :exercises
-    # get '/:id/workouts', to: 'users#workouts'
+   
     # get '/:id/users', to: 'workouts#users'
     end
+    get '/userWorkouts', to: 'users#allUserWorkouts'
   end
 end
