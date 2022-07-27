@@ -1,4 +1,4 @@
-import {Container, Col, Row, Card, Button, Stack, Image, CDN} from 'react-bootstrap';
+import {Col, Row, Card, Button, Stack, Image, CDN} from 'react-bootstrap';
 import { AiFillGithub, AiFillLinkedin, AiOutlineMail } from 'react-icons/ai';
 
 const Team = () => (
@@ -8,11 +8,11 @@ const Team = () => (
 
 
 
- <Row md = {1}>
+ <Row md ={1} xl={5}>
   
     <Col md={2.4} >
       <Card border ='primary' style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
+      <Card.Img variant="top" src="./images/image1.jpg" />
       <Card.Body>
         <Card.Title>Brian Kershisnik</Card.Title>
         <Card.Text>
@@ -21,7 +21,7 @@ const Team = () => (
         </Card.Text>
         <Card.Link href="https://github.com/briankershisnik"><AiFillGithub /></Card.Link>
         <Card.Link href="#"><AiFillLinkedin /></Card.Link>
-        <Card.Link href="mailto:"><AiOutlineMail /></Card.Link>
+        <Card.Link href="mailto:bkershis@gmail.com"><AiOutlineMail /></Card.Link>
       </Card.Body>
       </Card>
     </Col>
@@ -48,8 +48,7 @@ const Team = () => (
       <Card.Body>
         <Card.Title>Hayley Mentz</Card.Title>
         <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+          Former Research Scientist turned Novice Coder.
         </Card.Text>
         <Card.Link href="https://github.com/HayleyMentz"><AiFillGithub /></Card.Link>
         <Card.Link href="https://www.linkedin.com/in/hayley-mentz-75713219/"><AiFillLinkedin /></Card.Link>
@@ -73,7 +72,7 @@ const Team = () => (
       </Card.Body>
       </Card>
     </Col>
-   
+
     <Col md={2.4}>
       <Card border = 'primary' style={{ width: '18rem', margintop: '20px' }}>
       <Card.Img variant="top" src="holder.js/100px180" />
@@ -88,9 +87,8 @@ const Team = () => (
         <Card.Link href="mailto:"><AiOutlineMail /></Card.Link>
       </Card.Body>
       </Card>
-    </Col>
-    
-  </Row>
+    </Col>  
+</Row>
  
    
         
