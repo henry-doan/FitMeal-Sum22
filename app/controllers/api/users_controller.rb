@@ -30,5 +30,9 @@ class Api::UsersController < ApplicationController
       end
     end
   end
+     
+  def allUserWorkouts
+    render json: current_user.workouts
+  end
 
 end

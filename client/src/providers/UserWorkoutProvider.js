@@ -8,26 +8,35 @@ export const UserWorkoutConsumer = UserWorkoutContext.Consumer;
 
 const UserWorkoutProvider = ({ children }) => {
   const [userWorkouts, setUserWorkouts] = useState([]);
+  const [workouts, setWorkouts] = useState([]);
 
   const navigate = useNavigate();
 
   const getAllUserWorkouts = (workoutId) => {
     axios
-      .get(`/api/workouts/${workoutId}/userWorkouts`)
+      .get(`/api/workouts/${workoutId}/userworkouts`)
       .then((res) => setUserWorkouts(res.data))
       .catch((err) => console.log(err));
   };
 
-  const addUserWorkout = (workoutId, userWorkout) => {
+  const getAllLoginedUserWorkouts = () => {
     axios
-      .post(`/api/workouts/${workoutId}/userWorkouts`, { userWorkout })
+      .get("/api/userWorkouts")
+      .then((res) => setWorkouts(res.data))
+      .catch((err) => console.log(err));
+  };
+
+  const addUserWorkout = (workoutId, user_id) => {
+    const userworkout = { user_id: user_id };
+    axios
+      .post(`/api/workouts/${workoutId}/userworkouts`, { userworkout })
       .then((res) => setUserWorkouts([...userWorkouts, res.data]))
       .catch((err) => console.log(err));
   };
 
   const updateUserWorkout = (workoutId, id, userWorkout) => {
     axios
-      .put(`/api/workouts/${workoutId}/userWorkouts/${id}`, {
+      .put(`/api/workouts/${workoutId}/userworkouts/${id}`, {
         userWorkout,
       })
       .then((res) => {
@@ -45,7 +54,7 @@ const UserWorkoutProvider = ({ children }) => {
 
   const deleteUserWorkout = (workoutId, id) => {
     axios
-      .delete(`/api/workouts/${workoutId}/userWorkouts/${id}`)
+      .delete(`/api/workouts/${workoutId}/userworkouts/${id}`)
       .then((res) => {
         setUserWorkouts(userWorkouts.filter((u) => u.id !== id));
         navigate(`/${workoutId}/userWorkouts`);
@@ -61,6 +70,8 @@ const UserWorkoutProvider = ({ children }) => {
         addUserWorkout,
         updateUserWorkout,
         deleteUserWorkout,
+        workouts,
+        getAllLoginedUserWorkouts,
       }}
     >
       {children}
