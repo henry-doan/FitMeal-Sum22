@@ -12,9 +12,9 @@ const UserWorkoutProvider = ({ children }) => {
 
   const navigate = useNavigate();
 
-  const getAllUserWorkouts = (workoutId) => {
+  const getAllUserWorkouts = (userId) => {
     axios
-      .get(`/api/workouts/${workoutId}/userworkouts`)
+      .get(`/api/users/${userId}/userworkouts`)
       .then((res) => setUserWorkouts(res.data))
       .catch((err) => console.log(err));
   };
@@ -26,17 +26,17 @@ const UserWorkoutProvider = ({ children }) => {
       .catch((err) => console.log(err));
   };
 
-  const addUserWorkout = (workoutId, user_id) => {
-    const userworkout = { user_id: user_id };
+  const addUserWorkout = (userId, workout_id) => {
+    const userworkout = { workout_id: workout_id };
     axios
-      .post(`/api/workouts/${workoutId}/userworkouts`, { userworkout })
+      .post(`/api/users/${userId}/userworkouts`, { userworkout })
       .then((res) => setUserWorkouts([...userWorkouts, res.data]))
       .catch((err) => console.log(err));
   };
 
-  const updateUserWorkout = (workoutId, id, userWorkout) => {
+  const updateUserWorkout = (userId, id, userWorkout) => {
     axios
-      .put(`/api/workouts/${workoutId}/userworkouts/${id}`, {
+      .put(`/api/users/${userId}/userworkouts/${id}`, {
         userWorkout,
       })
       .then((res) => {
@@ -47,17 +47,17 @@ const UserWorkoutProvider = ({ children }) => {
           return u;
         });
         setUserWorkouts(newUpdateUserWorkout);
-        navigate(`/${workoutId}/userWorkouts`);
+        navigate(`/${userId}/userWorkouts`);
       })
       .catch((err) => console.log(err));
   };
 
-  const deleteUserWorkout = (workoutId, id) => {
+  const deleteUserWorkout = (userId, id) => {
     axios
-      .delete(`/api/workouts/${workoutId}/userworkouts/${id}`)
+      .delete(`/api/users/${userId}/userworkouts/${id}`)
       .then((res) => {
         setUserWorkouts(userWorkouts.filter((u) => u.id !== id));
-        navigate(`/${workoutId}/userWorkouts`);
+        navigate(`/${userId}/userWorkouts`);
       })
       .catch((err) => console.log(err));
   };

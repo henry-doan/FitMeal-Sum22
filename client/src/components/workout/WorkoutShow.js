@@ -70,7 +70,7 @@ const WorkoutShow = ({
 
               <Button
                 variant="secondary"
-                onClick={() => addUserWorkout(workoutId, user.id)}
+                onClick={() => addUserWorkout(user.id, workoutId)}
               >
                 Add to My workout
               </Button>

@@ -6,9 +6,10 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   namespace :api do
-    resources :users, only: :update
-    resources :workouts do
+    resources :users, only: :update do
       resources :userworkouts
+    end
+    resources :workouts do
       resources :exercises
    
     # get '/:id/users', to: 'workouts#users'
