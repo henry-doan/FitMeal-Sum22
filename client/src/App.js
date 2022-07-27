@@ -21,20 +21,18 @@ const App = () => (
     <MainNavbar />
     <FetchUser>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/" element={<ProtectedRoute />}>
           <Route path="profile" element={<Profile />} />
           <Route path="/userworkouts/UserWorkouts" element={<UserWorkouts />} />
           <Route path="/workouts" element={<Workouts />} />
           <Route path="/workouts/:workoutId" element={<WorkoutShow />} />
-
           <Route path="/:workoutId/exercises" element={<Exercises />} />
           <Route path="/:exerciseId/exerciseShow" element={<ExerciseShow />} />
         </Route>
-        <Route path="/landingpage" element={<LandingPage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/*" element={<Nomatch />} />
+        <Route path='/login' element={<LandingPage />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/*' element={<Nomatch />} />
       </Routes>
     </FetchUser>
   </>
