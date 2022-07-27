@@ -13,6 +13,7 @@ import WorkoutShow from './components/workout/WorkoutShow';
 
 import Exercises from './components/exercises/Exercises';
 import ExerciseShow from './components/exercises/ExerciseShow';
+import StopWatch from './components/timers/StopWatch';
 
 const App = () => (
 
@@ -28,7 +29,7 @@ const App = () => (
 
           <Route path='/:workoutId/exercises' element={<Exercises />} />
           <Route path='/:exerciseId/exerciseShow' element={<ExerciseShow />} />
-          
+          <Route path='/stopwatch' element={<StopWatch />} />
           
      
         </Route>

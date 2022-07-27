@@ -5,6 +5,7 @@ import { WorkoutConsumer } from '../../providers/WorkoutProvider'
 import WorkoutForm from './WorkoutForm';
 import Flash from '../shared/Flash'
 import Exercises from '../exercises/Exercises';
+import StopWatch, {Timer} from '../timers/StopWatch';
 
 const WorkoutShow = ({getAllWorkouts, workouts, updateWorkout, deleteWorkout, errors, setErrors }) => {
   const [show, setShow] = useState(false)
@@ -15,6 +16,8 @@ const WorkoutShow = ({getAllWorkouts, workouts, updateWorkout, deleteWorkout, er
   const { wname, wimage } = location.state
 
   const [editing, setEdit]= useState(false)
+
+  const [ time, setTime ]= useState(0)
 
 
 // const {id} = useParams()
@@ -79,7 +82,8 @@ const WorkoutShow = ({getAllWorkouts, workouts, updateWorkout, deleteWorkout, er
         workoutId={workoutId}
         wname={wname}
         />
-
+        <StopWatch time={time} setTime={setTime} />
+        <Timer time={time} />
 
       </Container>
     </>
