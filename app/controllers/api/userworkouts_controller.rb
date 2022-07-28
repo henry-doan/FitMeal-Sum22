@@ -1,10 +1,9 @@
 class Api::UserworkoutsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_workout
   before_action :set_userworkout, only: [:show, :update, :destroy]
 
   def index
-    render json: @workout.userworkouts
+    render json: current_user.userworkouts
   end
 
   def show
@@ -12,7 +11,7 @@ class Api::UserworkoutsController < ApplicationController
   end
 
   def create
-    @userworkout = @workout.userworkouts.new(userworkout_params)
+    @userworkout = current_user.userworkouts.new(userworkout_params)
     if @userworkout.save
       render json: @userworkout 
     else
@@ -34,15 +33,11 @@ class Api::UserworkoutsController < ApplicationController
   end
 
  private
-   def set_workout
-     @workout = Workout.find(params[:workout_id]) 
-   end
-
    def set_userworkout
-     @userworkout = @workout.userworkouts.find(params[:id])
+     @userworkout = current_user.userworkouts.find(params[:id])
    end
 
    def userworkout_params
-     params.require(:userworkout).permit( :user_id)
+     params.require(:userworkout).permit( :workout_id)
    end
 end

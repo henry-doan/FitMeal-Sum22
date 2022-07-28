@@ -1,33 +1,31 @@
 import React, { useEffect } from "react";
 import { UserWorkoutConsumer } from "../../providers/UserWorkoutProvider";
-import { Row, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import UserWorkoutList from "./UserWorkoutList";
 
 const UserWorkouts = ({
-  addUserWorkout,
   getAllUserWorkouts,
   deleteUserWorkout,
   errors,
   setErrors,
   userWorkouts,
+  getAllLoginedUserWorkouts,
+  workouts,
 }) => {
   useEffect(() => {
+    getAllLoginedUserWorkouts();
     getAllUserWorkouts();
   }, []);
+
   return (
     <div>
       <h1>My Workout</h1>
-      <Row sm={6}>
-        {userWorkouts.map((u) => (
-          <>
-            <Link to={`/workouts/${u.workout_id}`}></Link>
-
-            <Button variant="danger" onClick={() => deleteUserWorkout(u.id)}>
-              Delete
-            </Button>
-          </>
-        ))}
-      </Row>
+      {workouts.map((w) => (
+        <UserWorkoutList
+          {...w}
+          userWorkouts={userWorkouts}
+          deleteUserWorkout={deleteUserWorkout}
+        />
+      ))}
     </div>
   );
 };
@@ -37,4 +35,5 @@ const ConnectedUserWorkouts = (props) => (
     {(value) => <UserWorkouts {...props} {...value} />}
   </UserWorkoutConsumer>
 );
+
 export default ConnectedUserWorkouts;

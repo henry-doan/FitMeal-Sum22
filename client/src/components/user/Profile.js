@@ -54,23 +54,6 @@ const Profile = ({ user, updateUser, workouts, getAllLoginedUserWorkouts }) => {
             </Card.Body>
           </Card>
         </Container>
-
-        <Container>
-          <h1>My Workout</h1>
-          <ListGroup variant="flush">
-            {workouts.slice(0, 5).map((u) => (
-              <Link
-                to={`/workouts/${u.id}`}
-                state={{ wname: u.wname, wimage: u.wimage }}
-              >
-                <ListGroup.Item>{u.wname}</ListGroup.Item>
-              </Link>
-            ))}
-          </ListGroup>
-          {/* <Link to={../userworks/UserWorkouts}>
-              <Button>See more</Button>
-            </Link> */}
-        </Container>
       </>
     );
   };
@@ -158,6 +141,23 @@ const Profile = ({ user, updateUser, workouts, getAllLoginedUserWorkouts }) => {
           </Button>
         </Col>
       </Row>
+
+      <Container>
+        <h1>My Workout</h1>
+        <ListGroup variant="flush">
+          {workouts.slice(0, 5).map((w) => (
+            <Link
+              to={`/workouts/${w.id}`}
+              state={{ wname: w.wname, wimage: w.wimage }}
+            >
+              <ListGroup.Item>{w.wname}</ListGroup.Item>
+            </Link>
+          ))}
+        </ListGroup>
+        <Link to={"/userWorkouts"}>
+          <Button>See more</Button>
+        </Link>
+      </Container>
     </Container>
   );
 };
