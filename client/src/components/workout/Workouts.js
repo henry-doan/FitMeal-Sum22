@@ -1,39 +1,68 @@
 import React, {useState, useEffect} from 'react'
 import { WorkoutConsumer } from '../../providers/WorkoutProvider'
-import {Button, Modal} from 'react-bootstrap';
+import {Button, Container, Modal, Pagination} from 'react-bootstrap';
 import WorkoutForm from './WorkoutForm';
 import WorkoutList from './WorkoutList';
-
-const Workouts = ({ addWorkout, getAllWorkouts, errors, setErrors, workouts}) => {
-
+import { AuthConsumer } from '../../providers/AuthProvider';
+const Workouts = ({ addWorkout, getAllWorkouts, allWorkouts, getWorkouts, errors, setErrors, workouts, pagination}) => {
+  const [pages, setPages] = useState([])
+  const [active, setActive] = useState(1)
   const [adding, setAdd] = useState(false)
 
+  const [fullscreen, setFullscreen] = useState(true);
+  const values = [true];
+  function handleShow(breakpoint) {
+    setFullscreen(breakpoint);
+    setAdd(true);
+  }
 
   useEffect( () =>{
-    getAllWorkouts()  
+    renderPages()
+    getWorkouts()  
+    getAllWorkouts()
   }, [])
-  return (
-    <div>
-      
-    <h1>WORKOUTS</h1>
-    <Button onClick={() => setAdd(true)} > Create Workout +</Button>
 
-    <Modal show={adding} onHide={() => setAdd(false)}>
+  const renderPages = () => {
+    let items = []
+    for (let num = 1; num <= pagination; num ++) {
+      items.push(
+        <Pagination.Item key={num}  onClick={() => getWorkouts(num)} active={num === active}>
+          {num}
+        </Pagination.Item>
+      )
+    }
+    setPages(items)
+  }
+
+  return (
+    <Container>
+    <h1>WORKOUTS</h1>
+    <Button className="me-2 mb-2 btn-secondary" onClick={() => handleShow()}> Create Workout + </Button>
+     
+      <Modal show={adding} fullscreen={fullscreen} onHide={() => setAdd(false)}>
       <Modal.Header closeButton>
+      <Modal.Title></Modal.Title>
       </Modal.Header>
       <Modal.Body>
-      <WorkoutForm 
-      addWorkout={addWorkout}
-         errors={errors} 
-         setErrors={setErrors}  />
+       
+        <WorkoutForm 
+        addWorkout={addWorkout}
+        errors={errors} 
+        setErrors={setErrors}
+        />
+     
       </Modal.Body>
-    </Modal>
-      
+      </Modal>
+
+    
       <WorkoutList
       workouts={workouts}
-        errors={errors} 
-        setErrors={setErrors}  />
-    </div>
+      allWorkouts={allWorkouts}
+      errors={errors} 
+      setErrors={setErrors} 
+      />
+      <Pagination>{pages}</Pagination>
+    </Container>
   )
 }
 
@@ -43,4 +72,11 @@ const ConnectedWorkouts=(props)=>(
  </WorkoutConsumer>
 
 )
-export default ConnectedWorkouts;
+
+const ConnectedAuth = (props) => (
+  <AuthConsumer>
+    { value => <ConnectedWorkouts {...props} {...value} />}
+  </AuthConsumer>
+)
+
+export default ConnectedAuth;

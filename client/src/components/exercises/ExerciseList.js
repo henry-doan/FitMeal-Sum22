@@ -1,15 +1,14 @@
 import { ExerciseConsumer } from "../../providers/ExerciseProvider";
 import { WorkoutConsumer } from "../../providers/WorkoutProvider";
 import Exercise from './Exercise';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
-import { Col, Container, ListGroup, Row, Card } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import Flash from "../shared/Flash";
-import {useState} from 'react';
 
-import axios from 'axios';
 
-const ExerciseList = ({ workouts, getAllWorkouts, exercises, getAllExercises, deleteExercise, errors, setErrors }) => {
+
+const ExerciseList = ({ exercises, getAllExercises, deleteExercise, errors, setErrors }) => {
   const {workoutId} = useParams()
 
   useEffect( () => {
@@ -26,11 +25,16 @@ const ExerciseList = ({ workouts, getAllWorkouts, exercises, getAllExercises, de
         />
         : null
       }
+    <Container>
+   
 
-     <Container fluid>
+
+    </Container>
+
+     <Container>
       <Row>
         <Col>
-
+       
         { exercises.map((n) => ( 
             <Exercise 
               key={n.id}

@@ -65,7 +65,7 @@ const ExerciseProvider = ({ children }) => {
     axios.delete(`/api/workouts/${workoutId}/exercises/${id}`)
       .then(res => {
         setExercises(exercises.filter( n => n.id !== id))
-        navigate(`/${workoutId}/exercises`)
+        navigate(`/workouts`)
       })
       .catch( err => {
         console.log(err)

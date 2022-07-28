@@ -15,5 +15,6 @@ Rails.application.routes.draw do
     # get '/:id/users', to: 'workouts#users'
     end
     get '/userWorkouts', to: 'users#allUserWorkouts'
+    get '/workout_all', to: 'workouts#workout_all'
   end
 end

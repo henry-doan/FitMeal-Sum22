@@ -32,7 +32,6 @@ const Workout = ({workouts, id, wname, wimage, updateWorkout, deleteWorkout, err
           <Link to={`/workouts/${id}`} state={{wname: wname, wimage: wimage}}>
           <Button variant="dark">Show</Button>
           </Link>
-   
         </Card.Body>
       </Card>
 
@@ -64,4 +63,5 @@ const ConnectedWorkout = (props) => (
     {(value) => <Workout {...props} {...value} />}
   </WorkoutConsumer>
 )
+
 export default ConnectedWorkout;
