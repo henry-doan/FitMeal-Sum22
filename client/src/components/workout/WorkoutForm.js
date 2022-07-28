@@ -11,19 +11,15 @@ import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
-const WorkoutForm = ({ workouts, addWorkout, errors, setErrors, updateWorkout }) => {
+const WorkoutForm = ({ addWorkout, errors, setErrors, updateWorkout, setAdd, setEdit }) => {
   const [workout, setWorkout] = useState({ wname: '', difficulty: 'easy' })
   const [file, setFile] = useState()
+  const [wimage, setWimage] = useState('')
 
-  const {workoutId} = useParams()
-
+  const { workoutId } = useParams()
+ 
   const location = useLocation()
 
-
-
-
-  
-  
   useEffect( () => {
     if (workoutId) {
       const { wname, wimage, difficulty } = location.state
@@ -33,10 +29,13 @@ const WorkoutForm = ({ workouts, addWorkout, errors, setErrors, updateWorkout })
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    let newWorkout = {...workout, wimage: wimage}
     if (workoutId) {
-      updateWorkout(workoutId, workout)
+      updateWorkout(workoutId, newWorkout)
+      setEdit(false)
     } else {
-      addWorkout(workout)
+      addWorkout(newWorkout)
+      setAdd(false)
     }
     setWorkout({ wname: '', wimage: '', difficulty: 'easy' })
   }
@@ -44,13 +43,13 @@ const WorkoutForm = ({ workouts, addWorkout, errors, setErrors, updateWorkout })
   const handleFileUpdate = (fileItems) => {
     if (fileItems.length !== 0) {
       setFile(fileItems)
-      setWorkout({...workout, wimage: fileItems[0].file});
+      setWimage(fileItems[0].file);
     }
   }
 
   const handleFileRemoved = (e, file) => {
     setFile(null)
-    setWorkout({ ...workout, wimage: null});
+    setWimage(null);
   }
 
   return(
