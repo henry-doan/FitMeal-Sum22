@@ -10,11 +10,10 @@ import FetchUser from "./components/auth/FetchUser";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import Workouts from "./components/workout/Workouts";
 import WorkoutShow from "./components/workout/WorkoutShow";
-
-import Exercises from "./components/exercises/Exercises";
-import ExerciseShow from "./components/exercises/ExerciseShow";
-
 import UserWorkouts from "./components/userworkouts/UserWorkouts";
+import Exercises from './components/exercises/Exercises';
+import ExerciseShow from './components/exercises/ExerciseShow';
+import Team from './components/shared/Team';
 
 const App = () => (
   <>
@@ -30,9 +29,10 @@ const App = () => (
           <Route path="/:workoutId/exercises" element={<Exercises />} />
           <Route path="/:exerciseId/exerciseShow" element={<ExerciseShow />} />
         </Route>
-        <Route path="/login" element={<LandingPage />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/*" element={<Nomatch />} />
+        <Route path='/login' element={<LandingPage />} />
+        <Route path='/register' element={<Register />} />
+        <Route path='/team' element={<Team />} />
+        <Route path='/*' element={<Nomatch />} />
       </Routes>
     </FetchUser>
   </>
