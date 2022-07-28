@@ -16,11 +16,9 @@ const Team = () => (
       <Card.Body>
         <Card.Title>Brian Kershisnik</Card.Title>
         <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+        Brian Kershisnik is a full stack developer with a background in system administration and security.
         </Card.Text>
         <Card.Link href="https://github.com/briankershisnik"><AiFillGithub /></Card.Link>
-        <Card.Link href="#"><AiFillLinkedin /></Card.Link>
         <Card.Link href="mailto:bkershis@gmail.com"><AiOutlineMail /></Card.Link>
       </Card.Body>
       </Card>
@@ -48,7 +46,7 @@ const Team = () => (
       <Card.Body>
         <Card.Title>Hayley Mentz</Card.Title>
         <Card.Text>
-          Former Research Scientist turned Novice Coder.
+          Former Research Scientist turned Junior Developer.
         </Card.Text>
         <Card.Link href="https://github.com/HayleyMentz"><AiFillGithub /></Card.Link>
         <Card.Link href="https://www.linkedin.com/in/hayley-mentz-75713219/"><AiFillLinkedin /></Card.Link>
