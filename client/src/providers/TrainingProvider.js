@@ -6,11 +6,12 @@ export const TrainingContext = React.createContext()
 
 export const TrainingConsumer = TrainingContext.Consumer
 
-const TrainingProvider = (children) => {
+const TrainingProvider = ({children}) => {
   const [trainings, setTrainings] = useState([])
   const [errors, setErrors] = useState(null)
 
   const navigate = useNavigate()
+
   const getAllTrainings = () => {
     axios
       .get('/api/userworkouts/:userworkout_id/trainings')
@@ -43,6 +44,7 @@ const TrainingProvider = (children) => {
         errors,
         setErrors,
         getAllTrainings,
+        addTraining,
       }}
     >
       {children}
