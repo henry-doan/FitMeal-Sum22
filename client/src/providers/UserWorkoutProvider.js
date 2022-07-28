@@ -57,7 +57,6 @@ const UserWorkoutProvider = ({ children }) => {
       .delete(`/api/users/${userId}/userworkouts/${id}`)
       .then((res) => {
         setUserWorkouts(userWorkouts.filter((u) => u.id !== id));
-        navigate(`/${userId}/userWorkouts`);
       })
       .catch((err) => console.log(err));
   };

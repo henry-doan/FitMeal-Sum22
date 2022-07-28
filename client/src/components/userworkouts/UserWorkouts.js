@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
 import { UserWorkoutConsumer } from "../../providers/UserWorkoutProvider";
-import { Row, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import UserWorkoutList from "./UserWorkoutList";
 
 const UserWorkouts = ({
-  addUserWorkout,
   getAllUserWorkouts,
   deleteUserWorkout,
   errors,
@@ -17,32 +15,17 @@ const UserWorkouts = ({
     getAllLoginedUserWorkouts();
     getAllUserWorkouts();
   }, []);
-  const renderWorkouts = () => {
-    for (let i = 0; i < workouts; i++) {
-      for (let j = 0; j < userWorkouts; j++) {
-        if (userWorkouts[j].workout_id === workouts[i].id) {
-          return (
-            <>
-              <p>hello</p>
-              {/* <p>{workouts[i].wname}</p>
-              <Button
-                variant="danger"
-                onClick={() =>
-                  deleteUserWorkout(userWorkouts[j].user_id, userWorkouts[j].id)
-                }
-              >
-                Delete
-              </Button> */}
-            </>
-          );
-        }
-      }
-    }
-  };
+
   return (
     <div>
       <h1>My Workout</h1>
-      <Row sm={6}>{renderWorkouts()}</Row>
+      {workouts.map((w) => (
+        <UserWorkoutList
+          {...w}
+          userWorkouts={userWorkouts}
+          deleteUserWorkout={deleteUserWorkout}
+        />
+      ))}
     </div>
   );
 };
@@ -52,4 +35,5 @@ const ConnectedUserWorkouts = (props) => (
     {(value) => <UserWorkouts {...props} {...value} />}
   </UserWorkoutConsumer>
 );
+
 export default ConnectedUserWorkouts;
