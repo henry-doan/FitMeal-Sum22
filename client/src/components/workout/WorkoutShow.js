@@ -15,6 +15,7 @@ import { UserWorkoutConsumer } from "../../providers/UserWorkoutProvider";
 import WorkoutForm from "./WorkoutForm";
 import Flash from "../shared/Flash";
 import Exercises from "../exercises/Exercises";
+
 const WorkoutShow = ({ 
   getAllWorkouts, 
   workouts, 
@@ -25,19 +26,11 @@ const WorkoutShow = ({
   user, 
   addUserWorkout,
 }) => {
-  const [show, setShow] = useState(false);
-  const [workout, setWorkout] = useState({ wname: "", wimage: "" });
-
   const { workoutId } = useParams();
   const location = useLocation();
   const { wname, wimage } = location.state;
-
-
-
   const [time, setTime] = useState(0);
-
- 
-
+  const [editing, setEdit] = useState(false);
 
   return (
     <>
@@ -50,36 +43,32 @@ const WorkoutShow = ({
       ) : null}
 
       <Container>
-     
-      <Link to='/workouts'>Return to Workouts</Link>
+        <Link to='/workouts'>Return to Workouts</Link>
 
         <Card>
-        <Row>
-        <Col xs={6} md={4}>
-        <Card.Img variant="top" src={wimage} style={{ height: '15rem' }}/>
-        </Col>
-
-        <Col xs={12} md={8}>
-        <Card.Body>
-        <Card.Title>Workout: {wname}</Card.Title>
-        <Card.Text>
-        Estimated time: {time} mins
-        </Card.Text>
-        <Button variant="secondary" onClick={() => setShow(true)}>Edit</Button>
-              <Button variant="danger" onClick={() => deleteWorkout(workoutId)}>Delete</Button>
-
-              <Button
-              variant="secondary"
-              onClick={() => addUserWorkout(user.id, workoutId)}
-              >
-              Add to My workout
-              </Button>
-        </Card.Body>
-        </Col>
-        </Row>
+          <Row>
+            <Col xs={6} md={4}>
+              <Card.Img variant="top" src={wimage} style={{ height: '15rem' }}/>
+            </Col>
+            <Col xs={12} md={8}>
+              <Card.Body>
+                <Card.Title>Workout: {wname}</Card.Title>
+                <Card.Text>
+                Estimated time: {time} mins
+                </Card.Text>
+                <Button variant="secondary" onClick={() => setShow(true)}>Edit</Button>
+                <Button variant="danger" onClick={() => deleteWorkout(workoutId)}>Delete</Button>
+                <Button
+                variant="secondary"
+                onClick={() => addUserWorkout(user.id, workoutId)}
+                >
+                Add to My workout
+                </Button>
+              </Card.Body>
+            </Col>
+          </Row>
         </Card>
-
-        <Modal show={show} onHide={() => setShow(false)}>
+        <Modal show={editing} onHide={() => setEdit(false)}>
           <Modal.Header closeButton></Modal.Header>
           <Modal.Body>
             <WorkoutForm
@@ -87,19 +76,20 @@ const WorkoutShow = ({
               wname={wname}
               wimage={wimage}
               updateWorkout={updateWorkout}
+              setEdit={setEdit}
             />
           </Modal.Body>
         </Modal>
-
         <Exercises 
-        workoutId={workoutId}
-        wname={wname}
-        updateParentTime={setTime}
+          workoutId={workoutId}
+          wname={wname}
+          updateParentTime={setTime}
         />
       </Container>
     </>
   );
 };
+
 const ConnectedWorkout = (props) => (
   <WorkoutConsumer>
     {(value) => <WorkoutShow {...props} {...value} />}
@@ -117,4 +107,5 @@ const ConnectedUserWorkoutShow = (props) => (
     {(value) => <ConnectedWorkoutShow {...props} {...value} />}
   </AuthConsumer>
 );
+
 export default ConnectedUserWorkoutShow;

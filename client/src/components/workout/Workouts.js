@@ -6,18 +6,17 @@ import WorkoutList from './WorkoutList';
 import { AuthConsumer } from '../../providers/AuthProvider';
 import WorkoutHeader from './WorkoutHeader';
 import { BtnWhiteTxt } from '../styles/Styles';
+
 const Workouts = ({ addWorkout, getAllWorkouts, allWorkouts, getWorkouts, errors, setErrors, workouts, pagination}) => {
   const [pages, setPages] = useState([])
   const [active, setActive] = useState(1)
   const [adding, setAdd] = useState(false)
-
   const [fullscreen, setFullscreen] = useState(true);
   const values = [true];
   function handleShow(breakpoint) {
     setFullscreen(breakpoint);
     setAdd(true);
   }
-
 
   useEffect( () =>{
     renderPages()
@@ -41,39 +40,34 @@ const Workouts = ({ addWorkout, getAllWorkouts, allWorkouts, getWorkouts, errors
     <Container>
     <WorkoutHeader/>
     <BtnWhiteTxt onClick={() => handleShow()}> Create Workout + </BtnWhiteTxt>
-     
       <Modal show={adding} fullscreen={fullscreen} onHide={() => setAdd(false)}>
-      <Modal.Header closeButton>
-      <Modal.Title></Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-       
-        <WorkoutForm 
-        addWorkout={addWorkout}
-        errors={errors} 
-        setErrors={setErrors}
-        />
-     
-      </Modal.Body>
+        <Modal.Header closeButton>
+          <Modal.Title></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <WorkoutForm 
+            addWorkout={addWorkout}
+            errors={errors} 
+            setErrors={setErrors}
+            setAdd={setAdd}
+          />
+        </Modal.Body>
       </Modal>
-
-    
       <WorkoutList
-      workouts={workouts}
-      allWorkouts={allWorkouts}
-      errors={errors} 
-      setErrors={setErrors} 
+        workouts={workouts}
+        allWorkouts={allWorkouts}
+        errors={errors} 
+        setErrors={setErrors} 
       />
       <Pagination>{pages}</Pagination>
     </Container>
   )
 }
 
-const ConnectedWorkouts=(props)=>(
- <WorkoutConsumer>
- {value => <Workouts {...props} {...value}/>}
- </WorkoutConsumer>
-
+const ConnectedWorkouts = (props) => (
+  <WorkoutConsumer>
+    { value => <Workouts {...props} {...value}/> }
+  </WorkoutConsumer>
 )
 
 const ConnectedAuth = (props) => (
