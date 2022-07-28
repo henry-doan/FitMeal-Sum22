@@ -3,10 +3,17 @@ import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import Flash from '../shared/Flash';
 import { useParams, useLocation } from 'react-router-dom';
 import { WorkoutConsumer } from '../../providers/WorkoutProvider';
+import { FilePond, registerPlugin } from "react-filepond";
+import "filepond/dist/filepond.min.css";
+import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
+import FilePondPluginImagePreview from "filepond-plugin-image-preview";
+import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
+
+registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
 const WorkoutForm = ({ workouts, addWorkout, errors, setErrors, updateWorkout }) => {
-  const [workout, setWorkout] = useState({ wname: '', wimage: '', difficulty: 'easy' })
-  
+  const [workout, setWorkout] = useState({ wname: '', difficulty: 'easy' })
+  const [file, setFile] = useState()
 
   const {workoutId} = useParams()
 
@@ -33,7 +40,19 @@ const WorkoutForm = ({ workouts, addWorkout, errors, setErrors, updateWorkout })
     }
     setWorkout({ wname: '', wimage: '', difficulty: 'easy' })
   }
-  
+
+  const handleFileUpdate = (fileItems) => {
+    if (fileItems.length !== 0) {
+      setFile(fileItems)
+      setWorkout({...workout, wimage: fileItems[0].file});
+    }
+  }
+
+  const handleFileRemoved = (e, file) => {
+    setFile(null)
+    setWorkout({ ...workout, wimage: null});
+  }
+
   return(
     <>
       
@@ -69,12 +88,14 @@ const WorkoutForm = ({ workouts, addWorkout, errors, setErrors, updateWorkout })
               
               <Form.Group className="mb-3">
                 <Form.Label>image</Form.Label>
-                <Form.Control
-                  name='wimage'
-                  value={workout.wimage}
-                  onChange={(e) => setWorkout({ ...workout, wimage: e.target.value })}
-                  required
-                />
+                <FilePond
+                    files={file}
+                    onupdatefiles={handleFileUpdate}
+                    onremovefile={handleFileRemoved}
+                    allowMultiple={false}
+                    name="wimage"
+                    labelIdle='Drag and Drop your files or <span class="filepond--label-action">Browse</span>'
+                  />
               </Form.Group>
 
 
