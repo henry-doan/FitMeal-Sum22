@@ -11,19 +11,57 @@ class Api::WorkoutsController < ApplicationController
   end
  
   def create
-    @workout =  Workout.new(workout_params)
-    if @workout.save 
-      render json: @workout
+    @workout =  Workout.new(wname: params[:wname])
+
+    file = params[:file]
+    
+    if file && file != '' && file != "undefined"
+      begin
+        ext = File.extname(file.tempfile)
+        cloud_image = Cloudinary::Uploader.upload(file, public_id: file.original_filename, secure: true)
+        @workout.wimage = cloud_image['secure_url']
+        if @workout.save
+          render json: @workout
+        else
+          render json: { errors: @workout.errors.full_messages }, status: 422
+        end
+      rescue => e
+        render json: { errors: e }, status: 422
+      end
     else
-      render json: { errors: @workout.errors }, status: :unprocessable_entity
+      @workout.wimage = 'https://images.unsplash.com/photo-1553531889-65d9c41c2609?ixlib=rb-1.2.1&ixid=MnwxMjA3fDF8MHxzZWFyY2h8MXx8d29ya291dHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60'
+      if @workout.save
+        render json: @workout
+      else
+        render json: { errors: @workout.errors.full_messages }, status: 422
+      end
     end
   end
  
   def update
-    if @workout.update(workout_params)
-      render json: @workout
+    @workout.wname = params[:wname] ? params[:wname] : @workout.wname
+
+    file = params[:file]
+    
+    if file && file != '' && file != "undefined"
+      begin
+        ext = File.extname(file.tempfile)
+        cloud_image = Cloudinary::Uploader.upload(file, public_id: file.original_filename, secure: true)
+        @workout.wimage = cloud_image['secure_url']
+        if @workout.save
+          render json: @workout
+        else
+          render json: { errors: @workout.errors.full_messages }, status: 422
+        end
+      rescue => e
+        render json: { errors: e }, status: 422
+      end
     else
-      render json: { errors: @workout.errors }, status: :unprocessable_entity
+      if @workout.save
+        render json: @workout
+      else
+        render json: { errors: @workout.errors.full_messages }, status: 422
+      end
     end
   end
  
