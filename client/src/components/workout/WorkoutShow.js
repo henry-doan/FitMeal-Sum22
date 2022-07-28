@@ -26,20 +26,10 @@ const WorkoutShow = ({
   user,
   addUserWorkout,
 }) => {
-  const [show, setShow] = useState(false);
-  const [workout, setWorkout] = useState({ wname: "", wimage: "" });
-
   const { workoutId } = useParams();
   const location = useLocation();
   const { wname, wimage } = location.state;
-
   const [editing, setEdit] = useState(false);
-
-  // const {id} = useParams()
-  //   useEffect( () =>{
-  //     getAllWorkouts(workoutId)
-
-  //   }, [])
 
   return (
     <>
@@ -60,7 +50,7 @@ const WorkoutShow = ({
                 Workout: {wname} {workoutId}
               </Card.Title>
 
-              <Button variant="secondary" onClick={() => setShow(true)}>
+              <Button variant="secondary" onClick={() => setEdit(true)}>
                 Edit
               </Button>
 
@@ -81,7 +71,7 @@ const WorkoutShow = ({
           </Row>
         </Card>
 
-        <Modal show={show} onHide={() => setShow(false)}>
+        <Modal show={editing} onHide={() => setEdit(false)}>
           <Modal.Header closeButton></Modal.Header>
           <Modal.Body>
             <WorkoutForm
@@ -100,6 +90,7 @@ const WorkoutShow = ({
     </>
   );
 };
+
 const ConnectedWorkout = (props) => (
   <WorkoutConsumer>
     {(value) => <WorkoutShow {...props} {...value} />}
@@ -117,4 +108,5 @@ const ConnectedUserWorkoutShow = (props) => (
     {(value) => <ConnectedWorkoutShow {...props} {...value} />}
   </AuthConsumer>
 );
+
 export default ConnectedUserWorkoutShow;

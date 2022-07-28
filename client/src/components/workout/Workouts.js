@@ -5,42 +5,43 @@ import WorkoutForm from './WorkoutForm';
 import WorkoutList from './WorkoutList';
 
 const Workouts = ({ addWorkout, getAllWorkouts, errors, setErrors, workouts}) => {
-
   const [adding, setAdd] = useState(false)
 
-
-  useEffect( () =>{
+  useEffect( () => {
     getAllWorkouts()  
   }, [])
-  return (
-    <div>
-      
-    <h1>WORKOUTS</h1>
-    <Button onClick={() => setAdd(true)} > Create Workout +</Button>
 
-    <Modal show={adding} onHide={() => setAdd(false)}>
-      <Modal.Header closeButton>
-      </Modal.Header>
-      <Modal.Body>
-      <WorkoutForm 
-      addWorkout={addWorkout}
-         errors={errors} 
-         setErrors={setErrors}  />
-      </Modal.Body>
-    </Modal>
+  return (
+    <>
+      <h1>WORKOUTS</h1>
+      <Button onClick={() => setAdd(true)} > Create Workout +</Button>
+
+      <Modal show={adding} onHide={() => setAdd(false)}>
+        <Modal.Header closeButton>
+        </Modal.Header>
+        <Modal.Body>
+          <WorkoutForm 
+            addWorkout={addWorkout}
+            errors={errors} 
+            setErrors={setErrors}  
+            setAdd={setAdd}
+          />
+        </Modal.Body>
+      </Modal>
       
       <WorkoutList
-      workouts={workouts}
+        workouts={workouts}
         errors={errors} 
-        setErrors={setErrors}  />
-    </div>
+        setErrors={setErrors}  
+      />
+    </>
   )
 }
 
-const ConnectedWorkouts=(props)=>(
- <WorkoutConsumer>
- {value => <Workouts {...props} {...value}/>}
- </WorkoutConsumer>
-
+const ConnectedWorkouts = (props) => (
+  <WorkoutConsumer>
+    { value => <Workouts {...props} {...value}/> }
+  </WorkoutConsumer>
 )
+
 export default ConnectedWorkouts;
