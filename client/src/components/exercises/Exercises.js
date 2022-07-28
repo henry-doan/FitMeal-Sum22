@@ -26,7 +26,7 @@ const Exercises = ({ updateParentTime, workoutId, exercises, }) => {
 
   useEffect(() => {
     updateParentTime(time + total)
- }, [time]);
+ }, [total]);
 
   return(
     <>
@@ -62,7 +62,7 @@ const Exercises = ({ updateParentTime, workoutId, exercises, }) => {
    
       <h1>Exercise List</h1>
       <Container>
-      <Card>Total Estimated time: {total} mins</Card>
+      
       
       </Container>
       <ExerciseList

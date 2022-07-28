@@ -37,8 +37,7 @@ const WorkoutShow = ({
 
   const [time, setTime] = useState(0);
 
-  const updateParentTime = (t) => {
-   setTime(t); }
+ 
 
 
   return (
@@ -57,7 +56,7 @@ const WorkoutShow = ({
 
       <Accordion defaultActiveKey={['0']} alwaysOpen>
       <Accordion.Item eventKey="0">
-      <Accordion.Header>Workout: {wname} ID:{workoutId}</Accordion.Header>
+      <Accordion.Header>Workout: {wname} Estimated time: {time} mins </Accordion.Header>
       <Accordion.Body>
       <Row>
       <Col xs={12} md={8}>
@@ -95,7 +94,7 @@ const WorkoutShow = ({
         <Exercises 
         workoutId={workoutId}
         wname={wname}
-        updateParentTime={updateParentTime}
+        updateParentTime={setTime}
         />
       </Container>
     </>
