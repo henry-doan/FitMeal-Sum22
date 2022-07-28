@@ -16,6 +16,7 @@ const Workouts = ({ addWorkout, getAllWorkouts, allWorkouts, getWorkouts, errors
     setAdd(true);
   }
 
+
   useEffect( () =>{
     renderPages()
     getWorkouts()  
