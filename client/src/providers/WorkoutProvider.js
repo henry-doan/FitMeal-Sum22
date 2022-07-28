@@ -8,13 +8,38 @@ export const WorkoutConsumer = WorkoutContext.Consumer;
 
 const WorkoutProvider = ({ children }) => {
   const [workouts, setWorkouts] = useState([])
+  const [allWorkouts, setAllWorkouts] = useState([])
+  const [pagination, setPagination] = useState(1)
+  const [headers, setHeaders] = useState({})
   const [errors, setErrors] = useState(null)
 
   const navigate = useNavigate()
 
+
   const getAllWorkouts = () => {
-    axios.get('/api/workouts')
-      .then( res => setWorkouts(res.data) )
+    axios.get(`/api/workout_all`)
+    .then(res => {
+      const { data } = res 
+      setAllWorkouts(data)
+    })
+    .catch( err => {
+      console.log(err)
+      setErrors({
+        variant: 'danger',
+        msg: err.response.statusText
+      })
+    })
+  }
+
+  const getWorkouts = (page = 1) => {
+    axios.get(`/api/workouts?page=${page}`)
+    .then( res => {
+      const { headers, data } = res 
+      const totalPages = Math.ceil(headers['x-total'] / headers['x-per-page'])
+      setPagination(totalPages)
+      setWorkouts(data)
+      setHeaders(headers)
+    })
       .catch( err => {
         console.log(err)
         setErrors({
@@ -80,9 +105,14 @@ const WorkoutProvider = ({ children }) => {
   return (
     <WorkoutContext.Provider value={{
       workouts,
+      allWorkouts,
+      pagination,
+      headers,
       errors,
       setErrors,
+      getWorkouts,
       getAllWorkouts,
+    
       addWorkout,
       updateWorkout,
       deleteWorkout,

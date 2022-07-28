@@ -4,19 +4,19 @@ import Flash from '../shared/Flash';
 import { useParams, useLocation } from 'react-router-dom';
 import { WorkoutConsumer } from '../../providers/WorkoutProvider';
 
-const WorkoutForm = ({ addWorkout, errors, setErrors, updateWorkout }) => {
+const WorkoutForm = ({ workouts, addWorkout, errors, setErrors, updateWorkout }) => {
   const [workout, setWorkout] = useState({ wname: '', wimage: '' })
   
 
   const {workoutId} = useParams()
- 
+
   const location = useLocation()
 
-  // console.log(workoutId)
 
 
 
-
+  
+  
   useEffect( () => {
     if (workoutId) {
       const { wname, wimage } = location.state
@@ -33,7 +33,7 @@ const WorkoutForm = ({ addWorkout, errors, setErrors, updateWorkout }) => {
     }
     setWorkout({ wname: '', wimage: '' })
   }
-
+  
   return(
     <>
       
@@ -47,14 +47,14 @@ const WorkoutForm = ({ addWorkout, errors, setErrors, updateWorkout }) => {
       }
 
       <h1 className='text-center'>
-        { workoutId ? 'Update' : 'Create'} workout
+      { workoutId ? 'Update' : 'Create'} workout
       </h1>
 
 
       <Form onSubmit={handleSubmit}>
         <Container>
-          <Row>
-            <Col>
+          <Row className="justify-content-md-center">
+            <Col xs={6}>
               <Form.Group className="mb-3">
                 <Form.Label>Workout Name</Form.Label>
                 <Form.Control
@@ -64,8 +64,8 @@ const WorkoutForm = ({ addWorkout, errors, setErrors, updateWorkout }) => {
                   required
                 />
               </Form.Group>
-            </Col>
-            <Col>
+          
+            
               
               <Form.Group className="mb-3">
                 <Form.Label>image</Form.Label>
@@ -76,17 +76,19 @@ const WorkoutForm = ({ addWorkout, errors, setErrors, updateWorkout }) => {
                   required
                 />
               </Form.Group>
+
+              
+
+              <Button variant="primary" type="submit">
+              Submit
+              </Button>
+              
             </Col>
           </Row>
         
           
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
         </Container>
       </Form>
-
-      
     </>
   )
 }

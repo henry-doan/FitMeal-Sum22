@@ -1,15 +1,13 @@
-import { useState } from "react";
-import { Button, Modal, Image, Card, Container } from "react-bootstrap";
-import ExerciseForm from './ExerciseForm';
+
+import { Button, Image, Container } from "react-bootstrap";
 import { ExerciseConsumer } from "../../providers/ExerciseProvider";
 import Badge from 'react-bootstrap/Badge';
 import ListGroup from 'react-bootstrap/ListGroup';
-import { useParams, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
-const Exercise = ({ workout_id, id, name, image, category, deleteExercise}) => {
-  const [show, setShow] = useState(false);
-  const [editing, setEdit] = useState(false); 
+const Exercise = ({ workout_id, id, name, image, sets, level, movetype, category, reps, eduration, desc, deleteExercise}) => {
+
   
   return (
     <>
@@ -20,11 +18,12 @@ const Exercise = ({ workout_id, id, name, image, category, deleteExercise}) => {
     <Image width={171}
         height={180}
         src={image} />
-            {name}
+            Exercise: {name}
     
     <Badge bg="secondary" pill>Category: {category} </Badge>
-   
-    <Link to={`/${id}/exerciseShow`} state={{name: name, image: image, category: category, workoutId: workout_id}}>
+    <h4>Estimated time duration:<br/>
+    {eduration} mins </h4>
+    <Link to={`/${id}/exerciseShow`} state={{name: name, image: image, category: category, sets: sets, level: level, movetype: movetype, reps: reps, eduration: eduration, desc: desc, workoutId: workout_id}}>
     <Button variant="dark">Show Exercise</Button>
     </Link>
 

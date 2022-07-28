@@ -15,15 +15,15 @@ import { UserWorkoutConsumer } from "../../providers/UserWorkoutProvider";
 import WorkoutForm from "./WorkoutForm";
 import Flash from "../shared/Flash";
 import Exercises from "../exercises/Exercises";
-
-const WorkoutShow = ({
-  getAllWorkouts,
-  workouts,
-  updateWorkout,
-  deleteWorkout,
-  errors,
-  setErrors,
-  user,
+import Accordion from 'react-bootstrap/Accordion';
+const WorkoutShow = ({ 
+  getAllWorkouts, 
+  workouts, 
+  updateWorkout, 
+  deleteWorkout, 
+  errors, 
+  setErrors, 
+  user, 
   addUserWorkout,
 }) => {
   const [show, setShow] = useState(false);
@@ -33,13 +33,13 @@ const WorkoutShow = ({
   const location = useLocation();
   const { wname, wimage } = location.state;
 
-  const [editing, setEdit] = useState(false);
 
-  // const {id} = useParams()
-  //   useEffect( () =>{
-  //     getAllWorkouts(workoutId)
 
-  //   }, [])
+  const [time, setTime] = useState(0);
+
+  const updateParentTime = (t) => {
+   setTime(t); }
+
 
   return (
     <>
@@ -53,33 +53,32 @@ const WorkoutShow = ({
 
       <Container>
         <h1>Workout Show</h1>
-        <Card>
-          <Row>
-            <Col xs={12} md={8}>
-              <Card.Title className="mt-4">
-                Workout: {wname} {workoutId}
-              </Card.Title>
+      <Link to='/workouts'>Return to Workouts</Link>
 
-              <Button variant="secondary" onClick={() => setShow(true)}>
-                Edit
-              </Button>
+      <Accordion defaultActiveKey={['0']} alwaysOpen>
+      <Accordion.Item eventKey="0">
+      <Accordion.Header>Workout: {wname} ID:{workoutId}</Accordion.Header>
+      <Accordion.Body>
+      <Row>
+      <Col xs={12} md={8}>
+      <Button variant="secondary" onClick={() => setShow(true)}>Edit</Button>
+      <Button variant="danger" onClick={() => deleteWorkout(workoutId)}>Delete</Button>
 
-              <Button variant="danger" onClick={() => deleteWorkout(workoutId)}>
-                Delete
-              </Button>
+      <Button
+      variant="secondary"
+      onClick={() => addUserWorkout(workoutId, user.id)}
+      >
+      Add to My workout
+      </Button>
+      </Col>
 
-              <Button
-                variant="secondary"
-                onClick={() => addUserWorkout(user.id, workoutId)}
-              >
-                Add to My workout
-              </Button>
-            </Col>
-            <Col xs={6} md={4}>
-              <Card.Img variant="top" src={wimage} />
-            </Col>
-          </Row>
-        </Card>
+      <Col xs={6} md={4}>
+      <Card.Img variant="top" src={wimage} style={{ height: '15rem' }}/>
+      </Col>
+      </Row>
+      </Accordion.Body>
+      </Accordion.Item>
+      </Accordion>
 
         <Modal show={show} onHide={() => setShow(false)}>
           <Modal.Header closeButton></Modal.Header>
@@ -88,14 +87,16 @@ const WorkoutShow = ({
               workoutId={workoutId}
               wname={wname}
               wimage={wimage}
-              setEdit={setEdit}
               updateWorkout={updateWorkout}
             />
           </Modal.Body>
         </Modal>
 
-        <h1>Exercise's</h1>
-        <Exercises workoutId={workoutId} wname={wname} />
+        <Exercises 
+        workoutId={workoutId}
+        wname={wname}
+        updateParentTime={updateParentTime}
+        />
       </Container>
     </>
   );

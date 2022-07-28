@@ -36,6 +36,8 @@ gem "bootsnap", require: false
 # gem "rack-cors"
 gem 'devise_token_auth', '>= 1.2.0', git: "https://github.com/lynndylanhurley/devise_token_auth"
 gem 'cloudinary'
+gem 'will_paginate'
+gem 'api-pagination'
 
 group :development, :test do
   gem 'pry'
