@@ -35,7 +35,7 @@ const WorkoutProvider = ({ children }) => {
     axios.get(`/api/workouts?page=${page}`)
     .then( res => {
       const { headers, data } = res 
-      const totalPages = Math.ceil(headers['x-total'] / headers['x-per-page'])
+      const totalPages = Math.ceil(parseInt(headers['total']) / parseInt(headers['per-page']))
       setPagination(totalPages)
       setWorkouts(data)
       setHeaders(headers)
