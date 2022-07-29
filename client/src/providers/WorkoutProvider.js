@@ -50,6 +50,7 @@ const WorkoutProvider = ({ children }) => {
   }
 
   const addWorkout = (workout) => {
+    debugger;
     let data = new FormData();
     data.append('file', workout.wimage);
     data.append('wname', workout.wname);

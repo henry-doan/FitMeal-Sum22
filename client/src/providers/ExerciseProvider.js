@@ -25,10 +25,20 @@ const ExerciseProvider = ({ children }) => {
   }
 
   const addExercise = (workoutId, exercise) => {
-    axios.post(`/api/workouts/${workoutId}/exercises`, { exercise })
+    let data = new FormData();
+    data.append('file', exercise.image);
+    data.append('name', exercise.name);
+    data.append('movetype', exercise.movetype);
+    data.append('reps', exercise.reps);
+    data.append('sets', exercise.sets);
+    data.append('desc', exercise.desc);
+    data.append('category', exercise.category);
+    data.append('eduration', exercise.eduration);
+    axios.post(`/api/workouts/${workoutId}/exercises`, data )
       .then( res => setExercises([...exercises, res.data]))
       .catch( err => {
         console.log(err)
+        debugger;
         let field = Object.keys(err.response.data.errors)[0]
         let errMsg = Object.values(err.response.data.errors)[0]
         setErrors({
@@ -39,7 +49,17 @@ const ExerciseProvider = ({ children }) => {
   }
 
   const updateExercise = (workoutId, id, exercise) => {
-    axios.put(`/api/workouts/${workoutId}/exercises/${id}`, { exercise })
+    debugger;
+    let data = new FormData();
+    data.append('file', exercise.image);
+    data.append('name', exercise.name);
+    data.append('movetype', exercise.movetype);
+    data.append('reps', exercise.reps);
+    data.append('sets', exercise.sets);
+    data.append('desc', exercise.desc);
+    data.append('category', exercise.category);
+    data.append('eduration', exercise.eduration);
+    axios.put(`/api/workouts/${workoutId}/exercises/${id}`, data )
       .then( res => {
         const newUpdatedExercises = exercises.map( n => {
           if (n.id === id) {
