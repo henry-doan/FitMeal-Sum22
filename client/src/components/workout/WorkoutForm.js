@@ -5,7 +5,7 @@ import { useParams, useLocation } from 'react-router-dom';
 import { WorkoutConsumer } from '../../providers/WorkoutProvider';
 
 const WorkoutForm = ({ workouts, addWorkout, errors, setErrors, updateWorkout }) => {
-  const [workout, setWorkout] = useState({ wname: '', wimage: '', difficulty: '' })
+  const [workout, setWorkout] = useState({ wname: '', wimage: '', difficulty: 'easy' })
   
 
   const {workoutId} = useParams()
@@ -31,7 +31,7 @@ const WorkoutForm = ({ workouts, addWorkout, errors, setErrors, updateWorkout })
     } else {
       addWorkout(workout)
     }
-    setWorkout({ wname: '', wimage: '', difficulty: '' })
+    setWorkout({ wname: '', wimage: '', difficulty: 'easy' })
   }
   
   return(
