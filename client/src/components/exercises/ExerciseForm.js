@@ -6,7 +6,7 @@ import Flash from '../shared/Flash';
 
 const ExerciseForm = ({ workoutId, addExercise, name, level, movetype, reps, eduration, sets, image, desc,  category, updateExercise, errors, setErrors }) => {
  
-  const [exercise, setExercise] = useState({ name: '', image: '', category: '', sets:'', level:'', movetype: '', reps:'', eduration: '', desc:'' })
+  const [exercise, setExercise] = useState({ name: '', image: '', category: 'Health', sets:'', level:'easy', movetype: '', reps:'', eduration: '', desc:'' })
 
   const {exerciseId} = useParams()
 
@@ -26,7 +26,7 @@ const ExerciseForm = ({ workoutId, addExercise, name, level, movetype, reps, edu
     } else {
       addExercise(workoutId, exercise)
     }
-    setExercise({ name: '', image: '', category: '', sets: '', level: '', movetype: '', reps:'', eduration:'', desc:'' })
+    setExercise({ name: '', image: '', category: 'Health', sets: '', level: 'easy', movetype: '', reps:'', eduration:'', desc:'' })
   }
 
   return (
