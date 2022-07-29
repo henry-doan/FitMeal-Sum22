@@ -38,7 +38,6 @@ const ExerciseProvider = ({ children }) => {
       .then( res => setExercises([...exercises, res.data]))
       .catch( err => {
         console.log(err)
-        debugger;
         let field = Object.keys(err.response.data.errors)[0]
         let errMsg = Object.values(err.response.data.errors)[0]
         setErrors({
@@ -49,7 +48,6 @@ const ExerciseProvider = ({ children }) => {
   }
 
   const updateExercise = (workoutId, id, exercise) => {
-    debugger;
     let data = new FormData();
     data.append('file', exercise.image);
     data.append('name', exercise.name);

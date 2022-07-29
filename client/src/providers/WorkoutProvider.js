@@ -50,10 +50,10 @@ const WorkoutProvider = ({ children }) => {
   }
 
   const addWorkout = (workout) => {
-    debugger;
     let data = new FormData();
     data.append('file', workout.wimage);
     data.append('wname', workout.wname);
+    data.append('difficulty', workout.difficulty);
     axios.post('/api/workouts', data )
       .then( res => setWorkouts([...workouts, res.data ]))
       .catch( err => {
@@ -71,6 +71,7 @@ const WorkoutProvider = ({ children }) => {
     let data = new FormData();
     data.append('file', workout.wimage);
     data.append('wname', workout.wname);
+    data.append('difficulty', workout.difficulty);
     axios.put(`/api/workouts/${id}`, data )
       .then( res => {
         const newUpdateWorkouts = workouts.map( c => {
