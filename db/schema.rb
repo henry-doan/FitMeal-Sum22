@@ -18,7 +18,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_28_235651) do
     t.string "name"
     t.string "level"
     t.string "movetype"
-    t.datetime "timeframe"
     t.integer "reps"
     t.integer "sets"
     t.string "image"
@@ -27,6 +26,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_28_235651) do
     t.bigint "workout_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "eduration"
     t.index ["workout_id"], name: "index_exercises_on_workout_id"
   end
 
