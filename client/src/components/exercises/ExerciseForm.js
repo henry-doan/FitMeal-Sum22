@@ -25,10 +25,12 @@ const ExerciseForm = ({ workoutId, addExercise, name, level, movetype, reps, edu
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    let newExercise = {...exercise, image: image}
     if (exerciseId) {
-      updateExercise(workoutId, exerciseId, exercise)
+      updateExercise(workoutId, exerciseId, newExercise)
     } else {
-      addExercise(workoutId, exercise)
+      addExercise(workoutId, newExercise)
     }
     setExercise({ name: '', category: 'Health', sets: '', level: 'easy', movetype: '', reps:'', eduration:'', desc:'' })
     setImage('')

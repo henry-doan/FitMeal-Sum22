@@ -11,7 +11,7 @@ class Api::WorkoutsController < ApplicationController
   end
  
   def create
-    @workout =  Workout.new(wname: params[:wname])
+    @workout =  Workout.new(wname: params[:wname], difficulty: params[:difficulty])
 
     file = params[:file]
     
@@ -40,6 +40,7 @@ class Api::WorkoutsController < ApplicationController
  
   def update
     @workout.wname = params[:wname] ? params[:wname] : @workout.wname
+    @workout.difficulty = params[:difficulty] ? params[:difficulty] : @workout.difficulty
 
     file = params[:file]
     

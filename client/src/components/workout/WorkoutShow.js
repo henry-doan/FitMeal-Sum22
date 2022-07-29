@@ -56,7 +56,7 @@ const WorkoutShow = ({
                 <Card.Text>
                 Estimated time: {time} mins
                 </Card.Text>
-                <Button variant="secondary" onClick={() => setShow(true)}>Edit</Button>
+                <Button variant="secondary" onClick={() => setEdit(true)}>Edit</Button>
                 <Button variant="danger" onClick={() => deleteWorkout(workoutId)}>Delete</Button>
                 <Button
                 variant="secondary"
