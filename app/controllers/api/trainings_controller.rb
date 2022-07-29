@@ -4,7 +4,7 @@ class Api::TrainingsController < ApplicationController
   before_action :set_training, only: [:show, :update, :destroy]
 
   def index
-  render json: @userworkout.trainings.all
+  render json: @userworkout.trainings
   end
 
   def show
