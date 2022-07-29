@@ -17,6 +17,8 @@ import FilePondPluginImagePreview from "filepond-plugin-image-preview";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 import { UserWorkoutConsumer } from "../../providers/UserWorkoutProvider";
 import { Link } from "react-router-dom";
+import ProfileHeader from "./ProfileHeader";
+
 
 registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
@@ -42,7 +44,15 @@ const Profile = ({ user, updateUser, workouts, getAllLoginedUserWorkouts }) => {
   const profileView = () => {
     return (
       <>
-        <Container>
+      {/* <ProfileHeader/> */}
+      <div className='profile-header' style={{ backgroundImage: "url('')"}} >
+    <div className='p-5 text-center bg-image'>
+
+
+      </div>
+    </div>
+    
+        {/* <Container>
           <h1>My Profile</h1>
           <Card style={{ width: "40rem" }}>
             <Card.Img variant="top" src={user.image || defaultImage} />
@@ -53,7 +63,32 @@ const Profile = ({ user, updateUser, workouts, getAllLoginedUserWorkouts }) => {
               <Card.Title>{formUser.email}</Card.Title>
             </Card.Body>
           </Card>
+        </Container> */}
+
+
+        <Container className="profile-user-head">
+        <Card className="card-profile" >
+        <Row>
+
+        <Col xs={6} md={4}>
+        <Image variant="top" src={user.image || defaultImage} className="user-profile-img" width="70px"
+              height="70px"/>
+        </Col>
+
+        <Col xs={12} md={8}>
+        <Card.Body>
+        <Card.Title className="profile-user-items" >
+                {formUser.first}  {formUser.last}
+              </Card.Title>
+              <Card.Title>{formUser.email}</Card.Title>
+
+        
+        </Card.Body>
+        </Col>
+        </Row>
+        </Card>
         </Container>
+        
       </>
     );
   };
@@ -132,17 +167,17 @@ const Profile = ({ user, updateUser, workouts, getAllLoginedUserWorkouts }) => {
 
   return (
     <Container>
-      <hr />
-      <Row>
+      {/* <hr /> */}
+      <Row >
         {editing ? editView() : profileView()}
         <Col>
-          <Button onClick={() => setEditing(!editing)}>
+          <Button onClick={() => setEditing(!editing)} className="user-profile-button">
             {editing ? "Cancel" : "Edit"}
           </Button>
         </Col>
       </Row>
 
-      <Container>
+      <Container className="profile-user-items">
         <h1>My Workout</h1>
         <ListGroup variant="flush">
           {workouts.slice(0, 5).map((w) => (

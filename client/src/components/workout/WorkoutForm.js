@@ -5,7 +5,7 @@ import { useParams, useLocation } from 'react-router-dom';
 import { WorkoutConsumer } from '../../providers/WorkoutProvider';
 
 const WorkoutForm = ({ workouts, addWorkout, errors, setErrors, updateWorkout }) => {
-  const [workout, setWorkout] = useState({ wname: '', wimage: '' })
+  const [workout, setWorkout] = useState({ wname: '', wimage: '', difficulty: '' })
   
 
   const {workoutId} = useParams()
@@ -19,8 +19,8 @@ const WorkoutForm = ({ workouts, addWorkout, errors, setErrors, updateWorkout })
   
   useEffect( () => {
     if (workoutId) {
-      const { wname, wimage } = location.state
-      setWorkout({ wname, wimage })
+      const { wname, wimage, difficulty } = location.state
+      setWorkout({ wname, wimage, difficulty })
     }
   }, [])
 
@@ -31,7 +31,7 @@ const WorkoutForm = ({ workouts, addWorkout, errors, setErrors, updateWorkout })
     } else {
       addWorkout(workout)
     }
-    setWorkout({ wname: '', wimage: '' })
+    setWorkout({ wname: '', wimage: '', difficulty: '' })
   }
   
   return(
@@ -77,7 +77,22 @@ const WorkoutForm = ({ workouts, addWorkout, errors, setErrors, updateWorkout })
                 />
               </Form.Group>
 
-              
+
+              <Form.Group className="mb-3">
+          <Form.Label>difficulty</Form.Label>
+          <Form.Select
+            name='difficulty'
+            value={workout.difficulty}
+            onChange={(e) => setWorkout({ ...workout, difficulty: e.target.value })}
+            required
+          >
+        
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+      
+          </Form.Select>
+        </Form.Group>
 
               <Button variant="primary" type="submit">
               Submit

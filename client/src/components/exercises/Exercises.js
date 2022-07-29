@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Modal, Button, Container, Card } from 'react-bootstrap';
+import { Modal, Button, Container, Card, Table } from 'react-bootstrap';
 import { ExerciseConsumer } from "../../providers/ExerciseProvider";
 import { WorkoutConsumer } from "../../providers/WorkoutProvider";
 import ExerciseForm from './ExerciseForm';
@@ -40,9 +40,9 @@ const Exercises = ({ updateParentTime, workoutId, exercises, }) => {
 
  
          
-      <h1>Exercise Form</h1>
-      <Button onClick={() => setAdd(true)}>Add Exercises+</Button>
-          
+  
+      <Button onClick={() => setAdd(true)} className="login-button-white">Create Exercises+</Button>
+ 
     
 
 
@@ -60,14 +60,20 @@ const Exercises = ({ updateParentTime, workoutId, exercises, }) => {
       </Modal>
 
    
-      <h1>Exercise List</h1>
-      <Container>
-      
-      
-      </Container>
+    
+     <h1 className='workout-text-fam'>Workout Exercise</h1>
+
+    <Table>
+    <thead>
+        <tr>
+          {/* <th>#</th> */}
+        </tr>
+      </thead>
       <ExerciseList
        exercises={exercises}/>
-
+    </Table>
+  
+   
     </Container>
 
 

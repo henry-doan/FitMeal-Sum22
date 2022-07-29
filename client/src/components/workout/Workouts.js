@@ -4,6 +4,8 @@ import {Button, Container, Modal, Pagination} from 'react-bootstrap';
 import WorkoutForm from './WorkoutForm';
 import WorkoutList from './WorkoutList';
 import { AuthConsumer } from '../../providers/AuthProvider';
+import WorkoutHeader from './WorkoutHeader';
+import { BtnWhiteTxt } from '../styles/Styles';
 const Workouts = ({ addWorkout, getAllWorkouts, allWorkouts, getWorkouts, errors, setErrors, workouts, pagination}) => {
   const [pages, setPages] = useState([])
   const [active, setActive] = useState(1)
@@ -37,8 +39,8 @@ const Workouts = ({ addWorkout, getAllWorkouts, allWorkouts, getWorkouts, errors
 
   return (
     <Container>
-    <h1>WORKOUTS</h1>
-    <Button className="me-2 mb-2 btn-secondary" onClick={() => handleShow()}> Create Workout + </Button>
+    <WorkoutHeader/>
+    <BtnWhiteTxt onClick={() => handleShow()}> Create Workout + </BtnWhiteTxt>
      
       <Modal show={adding} fullscreen={fullscreen} onHide={() => setAdd(false)}>
       <Modal.Header closeButton>

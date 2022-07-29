@@ -20,5 +20,6 @@ Rails.application.routes.draw do
     resources :userworkouts, except: [:index, :show, :create, :update, :destroy] do
       resources :trainings
     end
+    get '/workout_all', to: 'workouts#workout_all'
   end
 end

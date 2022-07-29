@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_21_001223) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_28_235651) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,7 +18,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_001223) do
     t.string "name"
     t.string "level"
     t.string "movetype"
-    t.datetime "timeframe"
     t.integer "reps"
     t.integer "sets"
     t.string "image"
@@ -27,6 +26,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_001223) do
     t.bigint "workout_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "eduration"
     t.index ["workout_id"], name: "index_exercises_on_workout_id"
   end
 
@@ -85,6 +85,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_001223) do
     t.string "wimage"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "difficulty"
   end
 
   add_foreign_key "exercises", "workouts"

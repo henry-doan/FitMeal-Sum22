@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom'
-import { Modal, Container, Button, Card, Row, Image } from 'react-bootstrap'
+import { Modal, Container, Button, Card, Row, Image, Badge } from 'react-bootstrap'
 import { WorkoutConsumer } from '../../providers/WorkoutProvider'
 
 import Flash from '../shared/Flash'
 
 
-const Workout = ({workouts, id, wname, wimage, updateWorkout, deleteWorkout, errors, setErrors }) => {
+const Workout = ({workouts, id, wname, wimage, difficulty, updateWorkout, deleteWorkout, errors, setErrors, created_at }) => {
   const [show, setShow] = useState(false)
 
 
@@ -18,22 +18,25 @@ const Workout = ({workouts, id, wname, wimage, updateWorkout, deleteWorkout, err
     {errors ? (
       <Flash variant={errors.variant} msg={errors.msg} setErrors={setErrors} />
     ) : null}
-     
-  <Container>
 
-      <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src={wimage} style={{ height: '15rem' }}  />
-        <Card.Body>
-          <Card.Title>Workout: {wname}</Card.Title>
-          <Card.Text>
-          
+      <Container>
+      <Link to={`/workouts/${id}`} state={{wname: wname, wimage: wimage, difficulty: difficulty}} >
+      <Card className="bg-dark text-black">
+      <Card.Img src={wimage} alt="Card image" style={{ height: '15rem' }}/>
+      <Card.ImgOverlay>
 
-          </Card.Text>
-          <Link to={`/workouts/${id}`} state={{wname: wname, wimage: wimage}}>
-          <Button variant="dark">Show</Button>
-          </Link>
-        </Card.Body>
+      <Badge pill bg="light" text="dark">
+        {difficulty}
+      </Badge>{' '}
+
+
+
+      <Card.Title id="workout-title" >Workout: {wname}</Card.Title>
+
+      </Card.ImgOverlay>
       </Card>
+      </Link>
+
 
       <Modal show={show} onHide={() => setShow(false)}>
         <Modal.Header closeButton></Modal.Header>
