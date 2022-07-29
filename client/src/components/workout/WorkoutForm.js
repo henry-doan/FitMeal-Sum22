@@ -37,7 +37,8 @@ const WorkoutForm = ({ addWorkout, errors, setErrors, updateWorkout, setAdd, set
       addWorkout(newWorkout)
       setAdd(false)
     }
-    setWorkout({ wname: '', wimage: '', difficulty: 'easy' })
+    setWorkout({ wname: '', difficulty: 'easy' })
+    setWimage('')
   }
 
   const handleFileUpdate = (fileItems) => {
@@ -82,9 +83,7 @@ const WorkoutForm = ({ addWorkout, errors, setErrors, updateWorkout, setAdd, set
                   required
                 />
               </Form.Group>
-          
-            
-              
+                   
               <Form.Group className="mb-3">
                 <Form.Label>image</Form.Label>
                 <FilePond
@@ -97,31 +96,25 @@ const WorkoutForm = ({ addWorkout, errors, setErrors, updateWorkout, setAdd, set
                   />
               </Form.Group>
 
-
               <Form.Group className="mb-3">
-          <Form.Label>difficulty</Form.Label>
-          <Form.Select
-            name='difficulty'
-            value={workout.difficulty}
-            onChange={(e) => setWorkout({ ...workout, difficulty: e.target.value })}
-            required
-          >
-        
-            <option value="Easy">Easy</option>
-            <option value="Medium">Medium</option>
-            <option value="Hard">Hard</option>
-      
-          </Form.Select>
-        </Form.Group>
+                <Form.Label>difficulty</Form.Label>
+                <Form.Select
+                  name='difficulty'
+                  value={workout.difficulty}
+                  onChange={(e) => setWorkout({ ...workout, difficulty: e.target.value })}
+                  required
+                >
+                  <option value="Easy">Easy</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Hard">Hard</option>
+                </Form.Select>
+               </Form.Group>
 
               <Button variant="primary" type="submit">
               Submit
               </Button>
-              
             </Col>
           </Row>
-        
-          
         </Container>
       </Form>
     </>
