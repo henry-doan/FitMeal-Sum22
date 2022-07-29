@@ -14,6 +14,7 @@ import UserWorkouts from "./components/userworkouts/UserWorkouts";
 import Exercises from './components/exercises/Exercises';
 import ExerciseShow from './components/exercises/ExerciseShow';
 import Team from './components/shared/Team';
+import Trainings from './components/Training/Trainings';
 
 const App = () => (
   <>
@@ -28,6 +29,7 @@ const App = () => (
           <Route path="/workouts/:workoutId" element={<WorkoutShow />} />
           <Route path="/:workoutId/exercises" element={<Exercises />} />
           <Route path="/:exerciseId/exerciseShow" element={<ExerciseShow />} />
+          <Route path='/:userWorkoutId/trainings' element={<Trainings />} />
         </Route>
         <Route path='/login' element={<LandingPage />} />
         <Route path='/register' element={<Register />} />

@@ -1,10 +1,8 @@
 import { Link } from 'react-router-dom';
 import { AuthConsumer } from '../../providers/AuthProvider';
-import { Container, Navbar, Button, Nav} from 'react-bootstrap';
-
+import { Button, Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 
 const MainNavbar = ({ user, handleLogout }) => {
-
   const rightNavItems = () => {
     // links to show up if the user is logged in
     if (user) {
@@ -64,9 +62,7 @@ const MainNavbar = ({ user, handleLogout }) => {
 }
 
 const ConnectedMainNavbar = (props) => (
-  <AuthConsumer>
-    { value => <MainNavbar {...props} {...value} /> }
-  </AuthConsumer>
+  <AuthConsumer>{(value) => <MainNavbar {...props} {...value} />}</AuthConsumer>
 )
 
-export default ConnectedMainNavbar;
+export default ConnectedMainNavbar
