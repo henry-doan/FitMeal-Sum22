@@ -15,7 +15,6 @@ import { UserWorkoutConsumer } from "../../providers/UserWorkoutProvider";
 import WorkoutForm from "./WorkoutForm";
 import Flash from "../shared/Flash";
 import Exercises from "../exercises/Exercises";
-import Accordion from 'react-bootstrap/Accordion';
 const WorkoutShow = ({ 
   getAllWorkouts, 
   workouts, 
@@ -51,33 +50,34 @@ const WorkoutShow = ({
       ) : null}
 
       <Container>
-        <h1>Workout Show</h1>
+     
       <Link to='/workouts'>Return to Workouts</Link>
 
-      <Accordion defaultActiveKey={['0']} alwaysOpen>
-      <Accordion.Item eventKey="0">
-      <Accordion.Header>Workout: {wname} Estimated time: {time} mins </Accordion.Header>
-      <Accordion.Body>
-      <Row>
-      <Col xs={12} md={8}>
-      <Button variant="secondary" onClick={() => setShow(true)}>Edit</Button>
-      <Button variant="danger" onClick={() => deleteWorkout(workoutId)}>Delete</Button>
+        <Card>
+        <Row>
+        <Col xs={6} md={4}>
+        <Card.Img variant="top" src={wimage} style={{ height: '15rem' }}/>
+        </Col>
 
-      <Button
-      variant="secondary"
-      onClick={() => addUserWorkout(user.id, workoutId)}
-      >
-      Add to My workout
-      </Button>
-      </Col>
+        <Col xs={12} md={8}>
+        <Card.Body>
+        <Card.Title>Workout: {wname}</Card.Title>
+        <Card.Text>
+        Estimated time: {time} mins
+        </Card.Text>
+        <Button variant="secondary" onClick={() => setShow(true)}>Edit</Button>
+              <Button variant="danger" onClick={() => deleteWorkout(workoutId)}>Delete</Button>
 
-      <Col xs={6} md={4}>
-      <Card.Img variant="top" src={wimage} style={{ height: '15rem' }}/>
-      </Col>
-      </Row>
-      </Accordion.Body>
-      </Accordion.Item>
-      </Accordion>
+              <Button
+              variant="secondary"
+              onClick={() => addUserWorkout(user.id, workoutId)}
+              >
+              Add to My workout
+              </Button>
+        </Card.Body>
+        </Col>
+        </Row>
+        </Card>
 
         <Modal show={show} onHide={() => setShow(false)}>
           <Modal.Header closeButton></Modal.Header>

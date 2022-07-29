@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
 import { AuthConsumer } from '../../providers/AuthProvider';
-import { Button, Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import { Container, Navbar, Button, Nav} from 'react-bootstrap';
+import peach from '../styles/Peach and Green Simple Icon Health and Fitness Logo (1) 2.png';
+import { MainLoginBtn, LinkColors, BtnWhiteTxt } from '../styles/Styles';
+
 
 const MainNavbar = ({ user, handleLogout }) => {
   const rightNavItems = () => {
@@ -9,14 +12,24 @@ const MainNavbar = ({ user, handleLogout }) => {
       return (
         <>
           <Nav.Link>
-            <Link to='/workouts'>Workouts</Link>
+            <LinkColors to='/workouts'>Workouts</LinkColors>
           </Nav.Link>
           <Nav.Link>
-            <Link to='/profile'>Profile</Link>
+            <LinkColors to='/profile'>Profile</LinkColors>
           </Nav.Link>
           <Nav.Link onClick={() => handleLogout() }>
+           
             Logout
           </Nav.Link>
+          <Navbar.Text>
+            <img className='user-nav-image'
+              alt="Profile Image"
+              src={user.image}
+              width="70px"
+              height="70px"
+              />
+            
+          </Navbar.Text>
         </>
       )
     } else {
@@ -24,17 +37,17 @@ const MainNavbar = ({ user, handleLogout }) => {
       return (
         <>
           <Nav.Link>
-            <Link to='/team'>Team</Link>
+            <LinkColors to='/team'>Team</LinkColors>
           </Nav.Link>
           <Link to='/register'>
-            <Button variant='outline-primary'>
+            <MainLoginBtn>
               Sign Up
-            </Button>
+            </MainLoginBtn>
           </Link>
           <Link to='/login'>
-            <Button>
+            <BtnWhiteTxt>
               Log In
-            </Button>
+            </BtnWhiteTxt>
           </Link>
         </>
       )
@@ -48,7 +61,12 @@ const MainNavbar = ({ user, handleLogout }) => {
         <Container>
           <Navbar.Brand>
             <Link to='/'>
-              <p>FitMeal</p>
+             
+              <img className='nav-logo'
+              alt="logo"
+              src={peach}
+              width="70px"
+              />
             </Link>
           </Navbar.Brand>
           <Navbar.Toggle />

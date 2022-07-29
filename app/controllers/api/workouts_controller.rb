@@ -38,7 +38,7 @@ class Api::WorkoutsController < ApplicationController
 
   private
   def workout_params
-    params.require(:workout).permit(:wname, :wimage)
+    params.require(:workout).permit(:wname, :wimage, :difficulty)
   end
  
   def set_workout

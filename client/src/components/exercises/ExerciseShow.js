@@ -19,7 +19,7 @@ const ExerciseShow = ({ user, deleteExercise, updateWorkout}) => {
   return (
     <>
     <Container>
-    <h1>Exercise Show</h1>
+    
    
     <Link to="/workouts">Return to Workouts</Link>
     <ListGroup as="ol">
