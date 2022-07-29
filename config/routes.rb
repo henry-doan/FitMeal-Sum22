@@ -7,8 +7,8 @@ Rails.application.routes.draw do
 
   namespace :api do
     
-    resources :users, only: :update
-    resources :workouts do
+    resources :users, only: :update do
+    
       resources :userworkouts
     end
     resources :workouts do
