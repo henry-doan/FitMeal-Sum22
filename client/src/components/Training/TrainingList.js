@@ -6,13 +6,14 @@ import {  ListGroup } from "react-bootstrap";
 import Training from './Training';
 import Flash from '../shared/Flash';
 
-const TrainingList = ({getAllTrainings, trainings, errors, setErrors}) => {
+const TrainingList = ({getAllTrainings, deleteTraining, trainings, errors, setErrors}) => {
 
   const { userWorkoutId } = useParams()
 
   useEffect( () => {
     getAllTrainings(userWorkoutId)
   }, [])
+  
   return (
     <>
     { errors ?
@@ -29,7 +30,8 @@ const TrainingList = ({getAllTrainings, trainings, errors, setErrors}) => {
             <Training 
               key={t.id}
               {...t}
-              catId={userWorkoutId}
+              userWorkoutId={userWorkoutId}
+              deleteTraining={deleteTraining}
             />
         )}
       </ListGroup>

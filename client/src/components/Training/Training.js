@@ -1,31 +1,52 @@
-import { useState } from "react";
-import { Button, ListGroup, Modal } from "react-bootstrap";
-import Flash from '../shared/Flash';
+import { useState } from 'react'
+import { Button, ListGroup, Modal } from 'react-bootstrap'
+import Flash from '../shared/Flash'
+import TrainingForm from './TrainingForm'
 
-const Training = ({userWorkoutId, id, tname, duration}) => {
-  const [show, setShow] = useState(false);
+const Training = ({
+  deleteTraining,
+  userWorkoutId,
+  id,
+  trainingId,
+  tname,
+  duration,
+}) => {
+  const [show, setShow] = useState(false)
+  const [editing, setEdit] = useState(false)
   return (
     <div>
-    
-    <ListGroup.Item>
-        name: {tname}  duration:{duration} 
-        <Button onClick={() => setShow(true)}>
-          Show
-        </Button>
+      <ListGroup.Item>
+        {tname} {duration} minites
+        <Button onClick={() => setShow(true)}>Show</Button>
       </ListGroup.Item>
       <Modal show={show} onHide={() => setShow(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Training Show </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>name: {tname}</p>
-          <p>duration: {duration}</p>
-          <Button>Edit</Button>
-          <Button>Delete</Button>
+          <p> {tname}</p>
+          <p> {duration} min</p>
+          <Button onClick={() => setEdit(true)}>Edit</Button>
+          <Modal show={editing} onHide={() => setEdit(false)}>
+            <Modal.Header closeButton></Modal.Header>
+            <Modal.Body>
+              <TrainingForm
+                id={id}
+                userWorkoutId={userWorkoutId}
+                tname={tname}
+                duration={duration}
+                setEdit={setEdit}
+              />
+            </Modal.Body>
+          </Modal>
+
+          <Button onClick={() => deleteTraining(userWorkoutId, id)}>
+            Delete
+          </Button>
         </Modal.Body>
       </Modal>
     </div>
   )
 }
 
-export default Training;
+export default Training

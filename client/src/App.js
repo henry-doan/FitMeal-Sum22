@@ -29,7 +29,7 @@ const App = () => (
           <Route path="/workouts/:workoutId" element={<WorkoutShow />} />
           <Route path="/:workoutId/exercises" element={<Exercises />} />
           <Route path="/:exerciseId/exerciseShow" element={<ExerciseShow />} />
-          <Route path='/trainings' element={<Trainings />} />
+          <Route path='/:userWorkoutId/trainings' element={<Trainings />} />
         </Route>
         <Route path='/login' element={<LandingPage />} />
         <Route path='/register' element={<Register />} />

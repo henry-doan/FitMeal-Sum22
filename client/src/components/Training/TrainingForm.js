@@ -5,23 +5,23 @@ import Flash from '../shared/Flash';
 import {TrainingConsumer} from '../.././providers/TrainingProvider';
 import { Button, Form, Modal } from "react-bootstrap";
 
-const TrainingForm = ({userWorkoutId, addTraining, tname, duration,  updateTraining, deleteTraining, errors, setErrors}) => {
+const TrainingForm = ({ addTraining, id, tname, duration,  updateTraining, errors, setErrors}) => {
 
   const [training, setTrainings] = useState({ tname: '', duration: '' })
 
-  const {trainingId} = useParams()
+  const {trainingId, userWorkoutId} = useParams()
+
 
   useEffect( () => {
-    if (trainingId) {
-    
+    if (id) {
       setTrainings({ tname, duration})
     }
   }, [])
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (trainingId) {
-      updateTraining(userWorkoutId, trainingId, training)
+    if (id) {
+      updateTraining(userWorkoutId, id, training)
     } else {
       addTraining(userWorkoutId, training)
     }
@@ -30,6 +30,9 @@ const TrainingForm = ({userWorkoutId, addTraining, tname, duration,  updateTrain
 
   return (
     <>
+
+    
+   
     { errors ?
       <Flash 
         variant={errors.variant}
@@ -38,7 +41,8 @@ const TrainingForm = ({userWorkoutId, addTraining, tname, duration,  updateTrain
       />
       : null
     }
-    <h1>{ trainingId ? "Update" : "Create" } Exercise</h1>
+
+    <h1>{ id ? "Update" : "Create" } Training</h1>
     <Form onSubmit={handleSubmit}>
        
       <Form.Group className="mb-3">
@@ -65,15 +69,15 @@ const TrainingForm = ({userWorkoutId, addTraining, tname, duration,  updateTrain
           Submit
         </Button>
       </Form>
-      
+     
     </>
   )
 }
-const connectedTrainings =(props)=>{
+const connectedTrainings =(props)=>(
   <TrainingConsumer>
   { value => <TrainingForm {...props} {...value} /> }
   </TrainingConsumer>
 
-}
+  )
 
 export default connectedTrainings;
