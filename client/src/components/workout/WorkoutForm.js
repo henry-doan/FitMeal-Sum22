@@ -3,20 +3,23 @@ import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import Flash from '../shared/Flash';
 import { useParams, useLocation } from 'react-router-dom';
 import { WorkoutConsumer } from '../../providers/WorkoutProvider';
+import { FilePond, registerPlugin } from "react-filepond";
+import "filepond/dist/filepond.min.css";
+import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
+import FilePondPluginImagePreview from "filepond-plugin-image-preview";
+import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
 
-const WorkoutForm = ({ workouts, addWorkout, errors, setErrors, updateWorkout }) => {
-  const [workout, setWorkout] = useState({ wname: '', wimage: '', difficulty: 'easy' })
-  
+registerPlugin(FilePondPluginImageExifOrientation, FilePondPluginImagePreview);
 
-  const {workoutId} = useParams()
+const WorkoutForm = ({ addWorkout, errors, setErrors, updateWorkout, setAdd, setEdit }) => {
+  const [workout, setWorkout] = useState({ wname: '', difficulty: 'easy' })
+  const [file, setFile] = useState()
+  const [wimage, setWimage] = useState('')
 
+  const { workoutId } = useParams()
+ 
   const location = useLocation()
 
-
-
-
-  
-  
   useEffect( () => {
     if (workoutId) {
       const { wname, wimage, difficulty } = location.state
@@ -26,14 +29,30 @@ const WorkoutForm = ({ workouts, addWorkout, errors, setErrors, updateWorkout })
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    let newWorkout = {...workout, wimage: wimage}
     if (workoutId) {
-      updateWorkout(workoutId, workout)
+      updateWorkout(workoutId, newWorkout)
+      setEdit(false)
     } else {
-      addWorkout(workout)
+      addWorkout(newWorkout)
+      setAdd(false)
     }
-    setWorkout({ wname: '', wimage: '', difficulty: 'easy' })
+    setWorkout({ wname: '', difficulty: 'easy' })
+    setWimage('')
   }
-  
+
+  const handleFileUpdate = (fileItems) => {
+    if (fileItems.length !== 0) {
+      setFile(fileItems)
+      setWimage(fileItems[0].file);
+    }
+  }
+
+  const handleFileRemoved = (e, file) => {
+    setFile(null)
+    setWimage(null);
+  }
+
   return(
     <>
       
@@ -64,44 +83,38 @@ const WorkoutForm = ({ workouts, addWorkout, errors, setErrors, updateWorkout })
                   required
                 />
               </Form.Group>
-          
-            
-              
+                   
               <Form.Group className="mb-3">
                 <Form.Label>image</Form.Label>
-                <Form.Control
-                  name='wimage'
-                  value={workout.wimage}
-                  onChange={(e) => setWorkout({ ...workout, wimage: e.target.value })}
-                  required
-                />
+                <FilePond
+                    files={file}
+                    onupdatefiles={handleFileUpdate}
+                    onremovefile={handleFileRemoved}
+                    allowMultiple={false}
+                    name="wimage"
+                    labelIdle='Drag and Drop your files or <span class="filepond--label-action">Browse</span>'
+                  />
               </Form.Group>
 
-
               <Form.Group className="mb-3">
-          <Form.Label>difficulty</Form.Label>
-          <Form.Select
-            name='difficulty'
-            value={workout.difficulty}
-            onChange={(e) => setWorkout({ ...workout, difficulty: e.target.value })}
-            required
-          >
-        
-            <option value="Easy">Easy</option>
-            <option value="Medium">Medium</option>
-            <option value="Hard">Hard</option>
-      
-          </Form.Select>
-        </Form.Group>
+                <Form.Label>difficulty</Form.Label>
+                <Form.Select
+                  name='difficulty'
+                  value={workout.difficulty}
+                  onChange={(e) => setWorkout({ ...workout, difficulty: e.target.value })}
+                  required
+                >
+                  <option value="Easy">Easy</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Hard">Hard</option>
+                </Form.Select>
+               </Form.Group>
 
               <Button variant="primary" type="submit">
               Submit
               </Button>
-              
             </Col>
           </Row>
-        
-          
         </Container>
       </Form>
     </>

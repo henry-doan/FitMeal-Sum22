@@ -14,36 +14,34 @@ const WorkoutList = ({ allWorkouts, workouts, errors, setErrors }) => {
     ) : null}
 
     <Container>
-    <Row>
-  
-    <Col xs={6}>
-    <Form>
-    <Form.Group className="mb-3">
-    <Form.Label></Form.Label>
-    <Form.Control
-        name='query'
-        placeholder="Search Workouts"
-        onChange={(e)=> setQuery(e.target.value)}
-        />
-    </Form.Group>
-    </Form>
-    </Col>
-    </Row>
+      <Row>
+        <Col xs={6}>
+          <Form>
+            <Form.Group className="mb-3">
+              <Form.Label></Form.Label>
+              <Form.Control
+                  name='query'
+                  placeholder="Search Workouts"
+                  onChange={(e)=> setQuery(e.target.value)}
+                  />
+            </Form.Group>
+          </Form>
+        </Col>
+      </Row>
     </Container>
-  
+    
     <Container> 
-    <Row sm={3}>
-      { query ? allWorkouts.filter(workouts => workouts.wname.toLowerCase().includes(query)
-      ).map((workout)=>(
+      <Row sm={3}>
+        { query ? allWorkouts.filter(workouts => workouts.wname.toLowerCase().includes(query)
+        ).map((workout)=>(
+          <Workout key={workout.id} {...workout}/>
+      )) 
+      : 
+      workouts.map((workout)=>(
         <Workout key={workout.id} {...workout}/>
-     )) 
-     : 
-     workouts.map((workout)=>(
-      <Workout key={workout.id} {...workout}/>
-   ))
-     } 
-      
-    </Row>
+      ))
+      } 
+      </Row>
     </Container>
   </>
 )}
