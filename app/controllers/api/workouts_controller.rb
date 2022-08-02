@@ -31,6 +31,15 @@ class Api::WorkoutsController < ApplicationController
     @workout.destroy
     render json: { message: ' Workout removed' }
   end
+
+  def newest
+    Workout.all.order(created_at: :desc).first
+  end
+
+  def popular
+    render json: Workout.popular
+  end
+
  
   private
   def workout_params

@@ -21,9 +21,9 @@ const App = () => (
     <MainNavbar />
     <FetchUser>
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<Home />} />
         <Route path="/" element={<ProtectedRoute />}>
-          <Route path="profile" element={<Profile />} />
+          <Route path="/profile" element={<Profile />} />
           <Route path="/userWorkouts" element={<UserWorkouts />} />
           <Route path="/workouts" element={<Workouts />} />
           <Route path="/workouts/:workoutId" element={<WorkoutShow />} />
