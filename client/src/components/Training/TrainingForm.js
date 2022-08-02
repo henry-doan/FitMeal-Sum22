@@ -8,7 +8,6 @@ import Watch from '../timers/Watch';
 
 
 const TrainingForm = ({ addTraining, id, tname, duration,  updateTraining, errors, setErrors, setAdd, setEdit }) => {
-
   const [training, setTrainings] = useState({ tname: '', duration: '' })
   const [isActive, setIsActive] = useState(false);
   const {trainingId, userWorkoutId} = useParams()
@@ -50,23 +49,23 @@ const TrainingForm = ({ addTraining, id, tname, duration,  updateTraining, error
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">
           <Form.Label>name</Form.Label>
-            <Form.Control
-                    name='name'
-                    value={training.tname}
-                    onChange={(e) => setTrainings({ ...training, tname: e.target.value })}
-                    required
-                  />
+          <Form.Control
+            name='name'
+            value={training.tname}
+            onChange={(e) => setTrainings({ ...training, tname: e.target.value })}
+            required
+          />
         </Form.Group>
         <Form.Group>
           <Watch time={time} setTime={setTime} isActive={isActive} setIsActive={setIsActive} />
         </Form.Group>
           { !isActive ? 
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>:
-        <Button variant="primary" type="submit" disabled>
-          Submit
-        </Button>
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>:
+          <Button variant="primary" type="submit" disabled>
+            Submit
+          </Button>
           }
       </Form>
     </>
