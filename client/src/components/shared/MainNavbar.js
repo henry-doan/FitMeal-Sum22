@@ -58,7 +58,7 @@ const MainNavbar = ({ user, handleLogout }) => {
       {/* this will display regardless if you are logged in or not */}
 
       <NavbarLine expand="sm">
-      <Container>
+   
         <Navbar.Brand>
         <img className='nav-logo'
               alt="logo"
@@ -72,7 +72,7 @@ const MainNavbar = ({ user, handleLogout }) => {
         <Navbar.Collapse className="justify-content-end">
         { rightNavItems() }
         </Navbar.Collapse>
-      </Container>
+   
     </NavbarLine>
     
     </>

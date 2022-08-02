@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom'
-import { Modal, Container, Button, Card, Row, Image, Badge } from 'react-bootstrap'
+import { Modal, Container, Card, Row, Image, Badge } from 'react-bootstrap'
 import { WorkoutConsumer } from '../../providers/WorkoutProvider'
-import { WorkoutCard } from '../styles/Styles';
+import { WorkoutCard, WorkoutCardOverlay, WorkoutCardTitle } from '../styles/Styles';
 
 import Flash from '../shared/Flash';
 
@@ -19,9 +19,9 @@ const Workout = ({workouts, id, wname, wimage, difficulty, updateWorkout, delete
       <Container>
       <Link to={`/workouts/${id}`} state={{wname: wname, wimage: wimage, difficulty: difficulty}} >
       
-      <Card className="bg-dark text-white">
-      <WorkoutCard src={wimage} alt="Card image" style={{ height: '15rem' }}/>
-      <Card.ImgOverlay>
+      <WorkoutCard className="bg-dark">
+      <Card.Img src={wimage} alt="Card image" style={{ height: '15rem', minWidth: '5rem' }}/>
+      <WorkoutCardOverlay>
 
       <Badge pill bg="light" text="dark">
         {difficulty}
@@ -29,10 +29,10 @@ const Workout = ({workouts, id, wname, wimage, difficulty, updateWorkout, delete
 
 
 
-      <Card.Title id="workout-title" >Workout: {wname}</Card.Title>
+      <WorkoutCardTitle className="card text-center mt-5 top-50">Workout: {wname}</WorkoutCardTitle>
 
-      </Card.ImgOverlay>
-      </Card>
+      </WorkoutCardOverlay>
+      </WorkoutCard>
       </Link>
 
 

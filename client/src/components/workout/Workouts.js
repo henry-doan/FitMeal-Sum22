@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { WorkoutConsumer } from '../../providers/WorkoutProvider'
-import {Button, Container, Modal, Pagination} from 'react-bootstrap';
+import { Container, Modal, Pagination} from 'react-bootstrap';
 import WorkoutForm from './WorkoutForm';
 import WorkoutList from './WorkoutList';
 import { AuthConsumer } from '../../providers/AuthProvider';

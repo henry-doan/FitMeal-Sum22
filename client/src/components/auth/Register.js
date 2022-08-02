@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { AuthConsumer } from "../../providers/AuthProvider";
 import Flash from "../shared/Flash";
-import { Form, Image, Col, Button, Container, Row } from "react-bootstrap";
-import { Link } from 'react-router-dom';
+import { Form, Col, Row } from "react-bootstrap";
+
 
 // Import React FilePond
 import { FilePond, registerPlugin } from "react-filepond";
@@ -14,7 +14,7 @@ import "filepond/dist/filepond.min.css";
 import FilePondPluginImageExifOrientation from "filepond-plugin-image-exif-orientation";
 import FilePondPluginImagePreview from "filepond-plugin-image-preview";
 import "filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css";
-import { BtnWhiteTxt, Inner, Input, LinkColors, Outer } from "../styles/Styles";
+import { BtnWhiteTxt, Inner, Input, LinkColors, Outer, SignupPadding } from "../styles/Styles";
 
 
 // Register the plugins
@@ -64,6 +64,7 @@ const Register = ({ handleRegister, errors, setErrors }) => {
 
   return (
     <>
+  
     <Outer>
         { errors ?
           <Flash 
@@ -83,8 +84,9 @@ const Register = ({ handleRegister, errors, setErrors }) => {
       <Row>
       <Col>
       <Form.Group className="form-group mb-4">
-      <Form.Label>First Name</Form.Label>
+      
       <Input className="form-control"
+      placeholder="First Name"
       name="first"
       value={user.first}
       onChange={(e) => setUser({ ...user, first: e.target.value })}
@@ -96,8 +98,9 @@ const Register = ({ handleRegister, errors, setErrors }) => {
 
       <Col>
       <Form.Group className="form-group mb-4">
-      <Form.Label>Last Name</Form.Label>
+     
       <Input className="form-control"
+      placeholder="Last Name"
       name="last"
       value={user.last}
       onChange={(e) => setUser({ ...user, last: e.target.value })}
@@ -119,8 +122,9 @@ const Register = ({ handleRegister, errors, setErrors }) => {
       />
 
       <Form.Group className="form-group mb-4">
-      <Form.Label>Email</Form.Label>
+      
       <Input className="form-control"
+      placeholder="Email"
       name="email"
       value={user.email}
       onChange={(e) => setUser({ ...user, email: e.target.value })}
@@ -132,8 +136,9 @@ const Register = ({ handleRegister, errors, setErrors }) => {
 
 
       <Form.Group className="form-group mb-4">
-      <Form.Label>Password</Form.Label>
+      
       <Input className="form-control"
+      placeholder="Password"
       name="password"
       value={user.password}
       onChange={(e) => setUser({ ...user, password: e.target.value })}
@@ -143,8 +148,9 @@ const Register = ({ handleRegister, errors, setErrors }) => {
       </Form.Group>
 
       <Form.Group className="form-group mb-4">
-      <Form.Label>Password Confirmation </Form.Label>
+      
       <Input className="form-control"
+      placeholder="Password Confirmation"
       name="passwordConfirmation"
       value={user.passwordConfirmation}
       onChange={(e) =>
@@ -161,11 +167,12 @@ const Register = ({ handleRegister, errors, setErrors }) => {
       </BtnWhiteTxt>
 
       </Row >
-      <p>Have an Account? <LinkColors to='/login'>Login</LinkColors></p>
+      <SignupPadding>Have an Account? <LinkColors to='/login'>Login</LinkColors></SignupPadding>
       </Inner>
 
 
     </Outer>
+    
     </>
   );
 };
