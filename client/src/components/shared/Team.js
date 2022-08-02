@@ -58,7 +58,7 @@ const Team = () => (
           <TeamLink href="https://github.com/briankershisnik"><AiFillGithub /></TeamLink>
           <TeamLink href="mailto:bkershis@gmail.com"><AiOutlineMail /></TeamLink>
           <Card.Text>
-          Brian Kershisnik is a full stack developer with a background in system administration and security.
+          
           </Card.Text>
         </Card.Body>
       </TeamCard>
@@ -72,7 +72,7 @@ const Team = () => (
           <TeamLink href="https://github.com/briankershisnik"><AiFillGithub /></TeamLink>
           <TeamLink href="mailto:bkershis@gmail.com"><AiOutlineMail /></TeamLink>
           <Card.Text>
-          Brian Kershisnik is a full stack developer with a background in system administration and security.
+         
           </Card.Text>
         </Card.Body>
       </TeamCard>
