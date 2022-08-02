@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { Button, ListGroup, Modal } from 'react-bootstrap'
+import React from 'react'
 import Flash from '../shared/Flash'
 import TrainingForm from './TrainingForm'
+import Timer from '../timers/Timer'
 
 const Training = ({
   deleteTraining,
@@ -13,10 +15,11 @@ const Training = ({
 }) => {
   const [show, setShow] = useState(false)
   const [editing, setEdit] = useState(false)
+
   return (
     <div>
       <ListGroup.Item>
-        {tname} {duration} minites
+        {tname}
         <Button onClick={() => setShow(true)}>Show</Button>
       </ListGroup.Item>
       <Modal show={show} onHide={() => setShow(false)}>
@@ -25,7 +28,7 @@ const Training = ({
         </Modal.Header>
         <Modal.Body>
           <p> {tname}</p>
-          <p> {duration} min</p>
+          <Timer time={duration} />
           <Button onClick={() => setEdit(true)}>Edit</Button>
           <Modal show={editing} onHide={() => setEdit(false)}>
             <Modal.Header closeButton></Modal.Header>
@@ -49,4 +52,4 @@ const Training = ({
   )
 }
 
-export default Training
+export default Training;
