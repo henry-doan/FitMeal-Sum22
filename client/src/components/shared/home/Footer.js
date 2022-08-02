@@ -1,20 +1,35 @@
-import peach from '../../styles/Peach and Green Simple Icon Health and Fitness Logo (1) 2.png';
-
+import logo from '../../styles/Photos/Logo.png';
+import { FootCol, FootItems, FootLine, FootLinks } from '../../styles/Styles';
+import { Col, Container, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 const Footer = () => (
 
 
   <>
-    <footer> 
-    <div >
-      <img className='footer-item'
-      alt="logo"
-      src={peach}
-      width="70px"
-      />
-      <h6 className='footer-item'>FITMEAL</h6>
 
-    </div>
-    </footer>
+  <FootLine> 
+  <FootItems>
+    <Row>
+      <Col>      
+        <img 
+        alt="logo"
+        src={logo}
+        width="70px"
+        height="70px"
+        />
+      </Col>
+
+      <Col>FITMEAL</Col>
+      <Col>
+        <FootLinks to='/'> Privacy Policy </FootLinks>
+      </Col>
+      <Col>
+      <FootLinks to='/'> License  </FootLinks>
+      </Col>
+    </Row>
+
+  </FootItems>
+  </FootLine>
   
   </>
 ) 

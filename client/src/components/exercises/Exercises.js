@@ -1,15 +1,14 @@
 import { useState, useEffect } from 'react';
-import { Modal, Button, Container, Card, Table } from 'react-bootstrap';
+import { Modal, Container, Card, Table } from 'react-bootstrap';
 import { ExerciseConsumer } from "../../providers/ExerciseProvider";
 import { WorkoutConsumer } from "../../providers/WorkoutProvider";
+import { BtnWhiteTxt } from '../styles/Styles';
 import ExerciseForm from './ExerciseForm';
 import ExerciseList from './ExerciseList';
 
 const Exercises = ({ updateParentTime, workoutId, exercises, }) => {
   const [adding, setAdd] = useState(false)
   const [time, setTime] = useState(0);
-
-
 
   let total = 0;
 
@@ -22,67 +21,42 @@ const Exercises = ({ updateParentTime, workoutId, exercises, }) => {
   })
 
 
-
-
   useEffect(() => {
     updateParentTime(time + total)
- }, [total]);
+  }, [total]);
 
   return(
     <>
 
-   
-    <br/> 
-    
+      <br/> 
 
-    <Container>
-  
+      <Container>
 
- 
-         
-  
-      <Button onClick={() => setAdd(true)} className="login-button-white">Create Exercises+</Button>
- 
-    
+        <BtnWhiteTxt onClick={() => setAdd(true)} className="login-button-white">Create Exercises+</BtnWhiteTxt>
 
-
-      <Modal show={adding} onHide={() => setAdd(false)}>
-      <Modal.Header closeButton>
-      </Modal.Header>
-      <Modal.Body>
+        <Modal show={adding} onHide={() => setAdd(false)}>
+        <Modal.Header closeButton>
+        </Modal.Header>
+        <Modal.Body>
         <ExerciseForm
-          setAdd={setAdd}
-          workoutId={workoutId}
+        setAdd={setAdd}
+        workoutId={workoutId}
         />
+        </Modal.Body>
+        </Modal>
 
-      </Modal.Body>
+        <h1>Workout Exercise</h1>
+        <Table>
+        <ExerciseList
+        exercises={exercises}/>
+        </Table>
 
-      </Modal>
-
-   
-    
-     <h1 className='workout-text-fam'>Workout Exercise</h1>
-
-    <Table>
-    <thead>
-        <tr>
-          {/* <th>#</th> */}
-        </tr>
-      </thead>
-      <ExerciseList
-       exercises={exercises}/>
-    </Table>
-  
-   
-    </Container>
+      </Container>
 
 
     </>
   )
 }
-
-
-
 
 const ConnectedExercises = (props) => (
   <ExerciseConsumer>

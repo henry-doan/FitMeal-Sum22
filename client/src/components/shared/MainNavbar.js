@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
 import { AuthConsumer } from '../../providers/AuthProvider';
 import { Container, Navbar, Button, Nav} from 'react-bootstrap';
-import peach from '../styles/Peach and Green Simple Icon Health and Fitness Logo (1) 2.png';
-import { MainLoginBtn, LinkColors, BtnWhiteTxt } from '../styles/Styles';
-
+import { MainLoginBtn, LinkColors, BtnWhiteTxt, UserProfileNavImg, NavLine, NavbarLine } from '../styles/Styles';
+import logo from '../styles/Photos/Logo.png';
 
 const MainNavbar = ({ user, handleLogout }) => {
   const rightNavItems = () => {
@@ -22,7 +21,7 @@ const MainNavbar = ({ user, handleLogout }) => {
             Logout
           </Nav.Link>
           <Navbar.Text>
-            <img className='user-nav-image'
+            <UserProfileNavImg
               alt="Profile Image"
               src={user.image}
               width="70px"
@@ -57,24 +56,25 @@ const MainNavbar = ({ user, handleLogout }) => {
   return (
     <>
       {/* this will display regardless if you are logged in or not */}
-      <Navbar>
-        <Container>
-          <Navbar.Brand>
-            <Link to='/'>
-             
-              <img className='nav-logo'
+
+      <NavbarLine expand="sm">
+      <Container>
+        <Navbar.Brand>
+        <img className='nav-logo'
               alt="logo"
-              src={peach}
+              src={logo}
               width="70px"
               />
-            </Link>
           </Navbar.Brand>
-          <Navbar.Toggle />
-          <Navbar.Collapse className="justify-content-end">
-            { rightNavItems() }
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+          
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        
+        <Navbar.Collapse className="justify-content-end">
+        { rightNavItems() }
+        </Navbar.Collapse>
+      </Container>
+    </NavbarLine>
+    
     </>
   )
 }
@@ -83,4 +83,4 @@ const ConnectedMainNavbar = (props) => (
   <AuthConsumer>{(value) => <MainNavbar {...props} {...value} />}</AuthConsumer>
 )
 
-export default ConnectedMainNavbar
+export default ConnectedMainNavbar;

@@ -1,7 +1,7 @@
 import Register from '../../auth/Register';
 import { Row, Col, Image, Container} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
-import regimg from '../../styles/filip-mroz-XCkRGOX2VgM-unsplash 1.png'
+import signupImg from '../../styles/Photos/filip-mroz-XCkRGOX2VgM-unsplash 1.png';
 
 import Footer from './Footer';
 
@@ -18,7 +18,7 @@ const RegPage = () => (
       </Container>
     </Col>
     <Col md={6}>
-    <Image src={regimg} />
+    <Image src={signupImg} />
     </Col>
   </Row>
 
