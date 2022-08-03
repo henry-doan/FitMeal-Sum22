@@ -65,6 +65,15 @@ const TrainingForm = ({ addTraining, id, tname, duration,  updateTraining, error
                   required
                 />
               </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>image</Form.Label>
+                <Form.Control
+                  name='image'
+                  value={training.image}
+                  onChange={(e) => setTrainings({ ...training, image: e.target.value })}
+                  required
+                />
+              </Form.Group>
         <Button variant="primary" type="submit">
           Submit
         </Button>

@@ -15,12 +15,15 @@ import Exercises from './components/exercises/Exercises';
 import ExerciseShow from './components/exercises/ExerciseShow';
 import Team from './components/shared/Team';
 import Trainings from './components/Training/Trainings';
+import Design from "./components/shared/Design";
+
 
 const App = () => (
   <>
     <MainNavbar />
     <FetchUser>
       <Routes>
+        
         <Route path="/" element={<LandingPage />} />
         <Route path="/" element={<ProtectedRoute />}>
           <Route path="profile" element={<Profile />} />
@@ -37,6 +40,7 @@ const App = () => (
         <Route path='/*' element={<Nomatch />} />
       </Routes>
     </FetchUser>
+    
   </>
 );
 

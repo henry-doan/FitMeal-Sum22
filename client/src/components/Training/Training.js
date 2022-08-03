@@ -10,6 +10,7 @@ const Training = ({
   trainingId,
   tname,
   duration,
+  image
 }) => {
   const [show, setShow] = useState(false)
   const [editing, setEdit] = useState(false)
@@ -24,8 +25,10 @@ const Training = ({
           <Modal.Title>Training Show </Modal.Title>
         </Modal.Header>
         <Modal.Body>
+
           <p> {tname}</p>
-          <p> {duration} min</p>
+          <p> {duration} min</p><br />
+          <img src={image} alt="training image" width="490px" height="660px"/>
           <Button onClick={() => setEdit(true)}>Edit</Button>
           <Modal show={editing} onHide={() => setEdit(false)}>
             <Modal.Header closeButton></Modal.Header>
@@ -35,6 +38,7 @@ const Training = ({
                 userWorkoutId={userWorkoutId}
                 tname={tname}
                 duration={duration}
+                image={image}
                 setEdit={setEdit}
               />
             </Modal.Body>
@@ -49,4 +53,4 @@ const Training = ({
   )
 }
 
-export default Training
+export default Training;

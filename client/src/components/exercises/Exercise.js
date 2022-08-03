@@ -6,7 +6,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import { Link } from 'react-router-dom';
 
 
-const Exercise = ({ workout_id, id, name, image, sets, level, movetype, category, reps, eduration, desc, deleteExercise}) => {
+const Exercise = ({ workout_id, id, name, image, sets, level, movetype, category, reps, eduration, desc}) => {
 
   
   return (
@@ -18,8 +18,8 @@ const Exercise = ({ workout_id, id, name, image, sets, level, movetype, category
     <Image width={171}
         height={180}
         src={image} />
+        <p> image here</p>
             Exercise: {name}
-    
     <Badge bg="secondary" pill>Category: {category} </Badge>
     <h4>Estimated time duration:<br/>
     {eduration} mins </h4>
@@ -30,10 +30,6 @@ const Exercise = ({ workout_id, id, name, image, sets, level, movetype, category
    
     </ListGroup.Item>
     </ListGroup>
- 
-
- 
-
     </Container>
 
     </>

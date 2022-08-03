@@ -41,6 +41,6 @@ class Api::TrainingsController < ApplicationController
       @training = @userworkout.trainings.find(params[:id])
     end
     def training_params
-      params.require(:training).permit(:tname, :duration)
+      params.require(:training).permit(:tname, :duration, :image)
     end
 end
