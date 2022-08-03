@@ -21,5 +21,9 @@ Rails.application.routes.draw do
       resources :trainings
     end
     get '/workout_all', to: 'workouts#workout_all'
+
+    get '/popularWorkouts', to: 'workouts#popular'
+    get '/newestWorkouts', to: 'workouts#newest'
+    
   end
 end

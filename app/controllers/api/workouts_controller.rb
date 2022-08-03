@@ -71,6 +71,14 @@ class Api::WorkoutsController < ApplicationController
     render json: { message: ' Workout removed' }
   end
  
+  def newest
+    render json: Workout.all.order(created_at: :desc)
+  end
+
+  def popular
+    render json: Workout.popular
+  end
+
   def workout_all
     render json: Workout.all 
   end
