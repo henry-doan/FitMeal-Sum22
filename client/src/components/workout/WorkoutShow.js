@@ -15,7 +15,7 @@ import { UserWorkoutConsumer } from "../../providers/UserWorkoutProvider";
 import WorkoutForm from "./WorkoutForm";
 import Flash from "../shared/Flash";
 import Exercises from "../exercises/Exercises";
-
+import { LinkColors } from "../styles/Styles";
 const WorkoutShow = ({ 
   getAllWorkouts, 
   workouts, 
@@ -43,7 +43,8 @@ const WorkoutShow = ({
       ) : null}
 
       <Container>
-        <Link to='/workouts'>Return to Workouts</Link>
+     
+      <LinkColors to='/workouts'>Return to Workouts</LinkColors>
 
         <Card>
           <Row>

@@ -1,20 +1,37 @@
-import peach from '../../styles/Peach and Green Simple Icon Health and Fitness Logo (1) 2.png';
+import logo from '../../styles/Photos/Logo.png';
+import { FootLine, FootLinks, FootName, FootSpace } from '../../styles/Styles';
+import { Col, Row } from 'react-bootstrap';
 
 const Footer = () => (
 
 
   <>
-    <footer> 
-    <div >
-      <img className='footer-item'
-      alt="logo"
-      src={peach}
-      width="70px"
-      />
-      <h6 className='footer-item'>FITMEAL</h6>
 
-    </div>
-    </footer>
+  <FootLine>
+      <Row className="mx-auto py-4 flex-wrap">
+        
+        <Col>
+            <img
+              alt="logo"
+              src={logo}
+              width="70px"
+              height="70px"
+            />
+            <FootName>FITMEAL</FootName>
+        </Col>
+
+    
+
+        <Col>
+        <FootSpace className="justify-content-end">
+       
+        <FootLinks to='/login'  className='p-3'>Privacy Policy</FootLinks>
+        <FootLinks to='/login'  className='p-3'>License</FootLinks>
+        </FootSpace>
+        </Col>
+        
+      </Row>
+    </FootLine>
   
   </>
 ) 
