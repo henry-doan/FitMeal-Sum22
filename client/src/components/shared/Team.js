@@ -67,14 +67,14 @@ const Team = () => (
     </Col>
 
     <Col>
-      <TeamCard>
-        <TeamImage variant="top" src="" />
+    <TeamCard>
+        <TeamImage variant="top" src="./images/3.jpg" />
         <Card.Body>
           <Card.Title>Heidi Villa</Card.Title>
           <TeamLink href="https://github.com/briankershisnik"><AiFillGithub /></TeamLink>
-          <TeamLink href="mailto:bkershis@gmail.com"><AiOutlineMail /></TeamLink>
+          <TeamLink href="heidiv5689@gmail.com"><AiOutlineMail /></TeamLink>
           <Card.Text>
-         
+          Heidi is a junior developer with a background in pharmacy.
           </Card.Text>
         </Card.Body>
       </TeamCard>
