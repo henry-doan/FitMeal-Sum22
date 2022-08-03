@@ -26,6 +26,7 @@ class Api::WorkoutsController < ApplicationController
           render json: { errors: @workout.errors.full_messages }, status: 422
         end
       rescue => e
+  
         render json: { errors: e }, status: 422
       end
     else

@@ -71,7 +71,7 @@ const Profile = ({
   const [follow, setFollow] = useState(false)
 
   useEffect(() => {
-    getAllTrainings(8)
+    getAllTrainings(4)
     const { first, last, email, image } = user
     setUser({ first, last, email })
     getAllLoginedUserWorkouts()
@@ -149,7 +149,7 @@ const Profile = ({
               {trainings.length > 0 ? (
                 <PrevWorkout>
                   <img
-                    src={trainings[2].image}
+                    src={trainings[0].image}
                     alt="prev-ent"
                     width="490px"
                     height="660px"
@@ -165,7 +165,7 @@ const Profile = ({
                           borderRadius: '50%',
                         }}
                       />
-                      <h5>{trainings[2].tname}</h5>
+                      <h5>{trainings[0].tname}</h5>
                     </div>
                     <div
                       style={{
@@ -174,7 +174,7 @@ const Profile = ({
                         alignItems: 'center',
                       }}
                     >
-                      <ExerciseDate> {trainings[2].created_at}</ExerciseDate>
+                      <ExerciseDate> {trainings[0].created_at}</ExerciseDate>
                       <div>
                         <img src={chat_bubble_outline_24px} /> +{' '}
                       </div>
@@ -184,7 +184,7 @@ const Profile = ({
               ) : null}
               {workouts.length > 0 ? (
                 <ExerciseCards>
-                  <h3> {trainings[2].tname}</h3>
+                  <h3> {trainings[0].tname}</h3>
                   <Row>
                     <Col>
                       <img
