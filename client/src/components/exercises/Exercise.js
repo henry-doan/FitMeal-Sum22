@@ -3,7 +3,7 @@ import { ExerciseConsumer } from "../../providers/ExerciseProvider";
 import { Link } from 'react-router-dom';
 
 
-const Exercise = ({ workout_id, id, name, image, sets, level, movetype, category, reps, eduration, desc, deleteExercise}) => {
+const Exercise = ({ workout_id, id, name, image, sets, level, movetype, category, reps, eduration, desc}) => {
 
   
   return (

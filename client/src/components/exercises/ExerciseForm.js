@@ -157,7 +157,7 @@ const ExerciseForm = ({ workoutId, addExercise, name, level, movetype, reps, edu
                   name='eduration'
                   value={exercise.eduration}
                   onChange={(e) => setExercise({ ...exercise, eduration: e.target.value })}
-                  required
+                 
                 />
               </Form.Group>
 

@@ -52,13 +52,15 @@ const Team = () => (
 
     <Col>
       <TeamCard>
-        <TeamImage variant="top" src="" />
+        <TeamImage variant="top" src="https://scontent-lax3-1.xx.fbcdn.net/v/t39.30808-6/283307221_1930650457324435_8150273105163949495_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=itXkFVhj3GQAX_eqcnh&_nc_ht=scontent-lax3-1.xx&oh=00_AT_KNWZ--ApxinePssIPLvWeDLnaCuq7PTzQRNQzJ9IaRA&oe=62EDDD76" />
         <Card.Body>
           <Card.Title>Abdirahman Mohamed</Card.Title>
-          <TeamLink href="https://github.com/briankershisnik"><AiFillGithub /></TeamLink>
-          <TeamLink href="mailto:bkershis@gmail.com"><AiOutlineMail /></TeamLink>
+          <TeamLink href="https://github.com/ramgithup"><AiFillGithub /></TeamLink>
+          <TeamLink href="https://www.linkedin.com/in/abrah-moh-84980317b"><AiFillLinkedin /> </TeamLink>
+          <TeamLink href="mailto:srjsml12@gmail.com"><AiOutlineMail /></TeamLink>
           <Card.Text>
-          
+          I am full stack web developer ready to learn 
+          more technology still in college fresh year of Computer science.
           </Card.Text>
         </Card.Body>
       </TeamCard>
