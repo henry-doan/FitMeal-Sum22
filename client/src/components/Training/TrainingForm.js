@@ -7,15 +7,15 @@ import { Button, Form, Modal } from "react-bootstrap";
 import Watch from '../timers/Watch';
 
 
-const TrainingForm = ({ addTraining, id, tname, duration,  updateTraining, errors, setErrors, setAdd, setEdit }) => {
-  const [training, setTrainings] = useState({ tname: '', duration: '' })
+const TrainingForm = ({ addTraining, id, tname, duration, image,  updateTraining, errors, setErrors, setAdd, setEdit }) => {
+  const [training, setTrainings] = useState({ tname: '', duration: '', image: '' })
   const [isActive, setIsActive] = useState(false);
   const {trainingId, userWorkoutId} = useParams()
   const [ time, setTime ]= useState(0)
 
   useEffect( () => {
     if (id) {
-      setTrainings({ tname, duration})
+      setTrainings({ tname, duration, image})
       setTime(duration)
     }
   }, [])
@@ -30,43 +30,55 @@ const TrainingForm = ({ addTraining, id, tname, duration,  updateTraining, error
       addTraining(userWorkoutId, newTraining)
       setAdd(false)
     }
-    setTrainings({ tname: '', duration: ''})
+    setTrainings({ tname: '', duration: '', image: ''})
     setTime(0)
   }
 
   return (
     <>
-      { errors ?
-        <Flash 
-          variant={errors.variant}
-          msg={errors.msg}
-          setErrors={setErrors}
-        />
-        : null
-      }
+   
+    { errors ?
+      <Flash 
+        variant={errors.variant}
+        msg={errors.msg}
+        setErrors={setErrors}
+      />
+      : null
+    }
 
-      <h1>{ id ? "Update" : "Create" } Training</h1>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3">
-          <Form.Label>name</Form.Label>
-          <Form.Control
-            name='name'
-            value={training.tname}
-            onChange={(e) => setTrainings({ ...training, tname: e.target.value })}
-            required
-          />
-        </Form.Group>
-        <Form.Group>
-          <Watch time={time} setTime={setTime} isActive={isActive} setIsActive={setIsActive} />
-        </Form.Group>
-          { !isActive ? 
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>:
-          <Button variant="primary" type="submit" disabled>
-            Submit
-          </Button>
-          }
+    <h1>{ id ? "Update" : "Create" } Training</h1>
+    <Form onSubmit={handleSubmit}>
+       
+      <Form.Group className="mb-3">
+                <Form.Label>name</Form.Label>
+                <Form.Control
+                  name='name'
+                  value={training.tname}
+                  onChange={(e) => setTrainings({ ...training, tname: e.target.value })}
+                  required
+                />
+
+              </Form.Group>
+              <Form.Group>
+                <Watch time={time} setTime={setTime} isActive={isActive} setIsActive={setIsActive} />
+              </Form.Group>
+              <Form.Group className="mb-3">
+                <Form.Label>image</Form.Label>
+                <Form.Control
+                  name='image'
+                  value={training.image}
+                  onChange={(e) => setTrainings({ ...training, image: e.target.value })}
+                  required
+                />
+              </Form.Group>
+              { !isActive ? 
+                <Button variant="primary" type="submit">
+                  Submit
+                </Button>:
+                <Button variant="primary" type="submit" disabled>
+                  Submit
+                </Button>
+                }
       </Form>
     </>
   )
